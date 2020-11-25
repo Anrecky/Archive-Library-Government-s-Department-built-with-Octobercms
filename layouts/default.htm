@@ -10,47 +10,50 @@ function onInit()
 ==
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Utopig Studio">
-        <meta name="generator" content="Utopig Studio">
 
-        <title>{{ this.page.title }} - Utopig Studio</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ARPUSDA">
+    <meta name="generator" content="ARPUSDA">
 
-        <meta name="title" content="{{ this.page.meta_title }}">
-        <meta name="description" content="{{ this.page.meta_description }}">
+    <title>{{ this.page.title }} - Dinas Kearsipan dan Perpustakaan Daerah</title>
 
-        <meta property="og:title" content="{{ this.page.meta_title }}" />
-        <meta property="og:description" content="{{ this.page.meta_description }}" />
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="description" content="{{ this.page.meta_description }}">
 
-        <meta property="og:url" content="{{ url_current() }}" />
-        <meta property="og:image" content="" />
+    <meta property="og:title" content="{{ this.page.meta_title }}" />
+    <meta property="og:description" content="{{ this.page.meta_description }}" />
 
-        <link rel="shortcut icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
-        <link rel="icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
+    <meta property="og:url" content="{{ url_current() }}" />
+    <meta property="og:image" content="" />
 
-        <link href="{{ this.layout.styles }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
+    <link rel="icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
 
-        {% styles %}
+    <link href="{{ this.layout.styles }}" rel="stylesheet">
 
-    </head>
-    <body class="{{ this.page.bodyClass }}">
-        <div id="js--webapp">
+    {% styles %}
 
-            {% partial 'nav' %}
+</head>
 
-            {% page %}
+<body class="{{ this.page.bodyClass }}">
+    <div id="js--webapp">
 
-            {% partial 'footer' %}
+        {% partial 'nav' %}
 
-        </div>
+        {% page %}
 
-        <script src="{{ this.layout.scripts }}"></script>
+        {% partial 'footer' %}
 
-        {% framework extras %}
-    
-        {% scripts %}
+    </div>
 
-    </body>
+    <script src="{{ this.layout.scripts }}"></script>
+
+    {% framework extras %}
+
+    {% scripts %}
+
+</body>
+
 </html>

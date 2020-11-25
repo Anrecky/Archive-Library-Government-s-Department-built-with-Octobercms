@@ -1,0 +1,11 @@
+items:
+    -
+        title: Beranda
+        type: cms-page
+        code: ''
+        reference: home
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Main Menu'

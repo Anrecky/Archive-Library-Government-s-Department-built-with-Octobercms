@@ -1,29 +1,33 @@
 [viewBag]
-==
-<div class="container">
-	<nav class="navbar navbar-expand-lg navbar-dark">
-		<a class="navbar-brand" href="http://utopigstudio.com" target="_blank">
-			<img src="{{ 'assets/images/utopig-icon.svg'|theme }}" alt="Utopig Studio icon, which is a flying pig">
-		</a>
-	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    	<span class="navbar-toggler-icon"></span>
-	  	</button>
 
-	  	<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-		    <ul class="navbar-nav">
-		      	<li class="nav-item active">
-		        	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		      	</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="#documentation">Documentation</a>
-		      	</li>
-		      	<li class="nav-item">
-		      	  	<a class="nav-link" href="https://github.com/utopigstudio/october-webpack-theme-boilerplate" target="_blank">Download</a>
-		      	</li>
-		      	<li class="nav-item">
-		      	  	<a class="nav-link" href="http://utopigstudio.com" target="_blank">About us</a>
-		      	</li>
-		    </ul>
-	  	</div>
-	</nav>
+[staticMenu]
+code = "main-menu"
+==
+
+{% set menu = staticMenu.menuItems %}
+
+
+<div class="bg-primary">
+    <nav class="container navbar navbar-expand-lg navbar-dark">
+        <a href="#" class="navbar-brand"> <img src="{{ 'assets/images/logo.png'|theme }}" width="80" height="80"
+                alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% for item in menu %}
+                <li class="nav-item {{ item.isActive ? 'active' }}">
+                    <a class="nav-link" href="{{item.url}}"> {{item.title}} </a>
+                </li>
+                {% endfor %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Cari" aria-label="Search">
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Cari</button>
+            </form>
+        </div>
+    </nav>
 </div>

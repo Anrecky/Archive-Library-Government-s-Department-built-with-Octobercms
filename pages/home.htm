@@ -1,94 +1,206 @@
-title = "Home"
+title = "Beranda"
 url = "/"
 layout = "default"
 is_hidden = 0
 
 [viewBag]
 
+[recordDetail]
+activeOnly = 1
+recordSlug = "banner1"
+areaSlug = "banner"
+categorySlug = "{{ :category }}"
+useMainCategory = 1
+categoryPage = 0
+categoryPageSlug = "{{ :category }}"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 4
+noPostsMessage = "No posts found"
+sortOrder = "created_at desc"
+categoryPage = "home"
+postPage = "home"
 ==
 <?php
+use RainLab\Blog\Models\Post;
+
 function onStart()
 {
-    $this->page['bodyClass'] = 'home';
+$this->page['bodyClass'] = 'home';
+
+}
+function onLoadPost()
+{
+$nFetch = (int)post('nFetch');
+$news = Post::with('featured_images')->orderBy('created_at', 'desc')->skip(4 * $nFetch)->take(4)->get();
+$this['news'] = $news;
+return[
+'news'=>$news,
+'nFetch'=>(int)post('nFetch')
+];
 }
 ?>
 ==
-<a href="https://github.com/utopigstudio/october-webpack-theme-boilerplate" class="home__github" target="_blank">
-	<img src="{{ 'assets/images/github-icon.svg'|theme }}" alt="Github icon">
-</a>
-<a href="http://utopigstudio.com" class="home__utopig" target="_blank">
-	<img src="{{ 'assets/images/utopig-icon.svg'|theme }}" class="home__utopig" alt="Utopig Studio icon, which is a flying pig">
-</a>
 
-<div class="container">
-	<div class="header">
-		<h1 class="header__title">October CMS Webpack Theme Boilerplate</h1>
-		<p class="header__subtitle">A Bootstrap + jQuery + Webpack Theme Boilerplate for October CMS</p>
-	</div>
+{% if recordDetail.images_media|length %}
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        {% for mediaImage in recordDetail.images_media %}
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index }}"
+            class="{% if loop.first %}active{% endif %}"></li>
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for mediaImage in recordDetail.images_media %}
+        <div class="carousel-item {% if loop.first %}active{% endif %}">
+            <img style="height: 90vh;" class="d-block w-100" src="{{mediaImage.image|media}}"
+                alt="{{mediaImage.image_title ? mediaImage.image_title : recordDetail.recordDetail.name}}">
+        </div>
+        {% endfor %}
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
+{% endif %}
 
-<div class="home__content">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-xl-11">
-				<div class="home__section">
-					<h3 class="home__sec-title">It includes</h3>
-					<div class="home__indent home__logos">
-						<div class="row">
-							<div class="col-6 col-md-3 col-lg-2 text-center">
-								<img class="img-fluid" src="{{ 'assets/images/webpack-icon.svg'|theme }}" alt="Webpack logo">
-								<p>Webpack</p>
-							</div>
-							<div class="col-6 col-md-3 col-lg-2 text-center">
-								<img class="img-fluid" src="{{ 'assets/images/autoprefixer-logo.svg'|theme }}" alt="Autoprefixer logo">
-								<p>Autoprefixer</p>
-							</div>
-							<div class="col-6 col-md-3 col-lg-2 text-center">
-								<img class="img-fluid" src="{{ 'assets/images/bootstrap-logo.svg'|theme }}" alt="Bootstrap logo">
-								<p>Bootstrap</p>
-							</div>
-							<div class="col-6 col-md-3 col-lg-2 text-center">
-								<img class="img-fluid" src="{{ 'assets/images/jQuery-logo.svg'|theme }}" alt="jQuery logo">
-								<p>jQuery</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="documentation" class="home__section">
-					<h3 class="home__sec-title">How to use it</h3>
-					<div class="home__indent">
-						<ul>
-							<li>Install October CMS</li>
-							<li>Create a new folder in October /themes folder (call it for example my-awesome-theme)</li>
-							<li>Clone the repo in your theme folder</li>
-							<li>Activate the theme from October backend settings</li>
-						</ul>
-					</div>
-				</div>
-				<div class="home__section">
-					<h3 class="home__sec-title">To modify it</h3>
-					<div class="home__indent">
-						<ul>
-							<li>Open a terminal, go to your theme folder and run npm install (node_modules folder will be created)</li>
-							<li>Install more packages using npm install --save</li>
-							<li>Require your installed packages in src/js/app.js</li>
-							<li>Modify the js and scss files</li>
-							<li>Run npm run dev (npm run watch to recompile when something changes)</li>
-							<li>Add new pages, partials, content files...</li>
-						</ul>
-					</div>
-				</div>
-				<div class="home__section">
-					<h3 class="home__sec-title">When you’re ready for production…</h3>
-					<div class="home__indent">
-						<ul>
-							<li>Run npm run prod</li>
-							<li>You don't need to upload node_modules and src folders to the production host if you don't compile your assets there</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<section class="container-fluid my-5 px-md-0 text-center">
+    <h1>Layanan</h1>
+    <div class="services__wrapper d-flex my-4">
+        <article class="services__kearsipan my-4 p-2">
+            <h2>KEARSIPAN</h2>
+            <div class="row p-4">
+                <div class="col-3 services__col">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quasi, incidunt nulla nesciunt
+                            nam
+                            delectus rerum sed? Ratione at beatae quidem, exercitationem, ea dolorem voluptatem impedit
+                            nesciunt, accusamus sit vitae.</div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                            aria-labelledby="v-pills-profile-tab">Animi voluptates ipsum quae voluptatem id harum
+                            eligendi
+                            sunt dolorum deleniti accusamus, tempore iusto corrupti assumenda omnis iure sint, atque
+                            impedit
+                            totam deserunt. Quibusdam porro consequatur maiores quas cumque eius nemo, exercitationem
+                            veniam
+                            beatae quis dicta cum quia consectetur, nostrum sapiente est.
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">Accusamus praesentium reprehenderit nemo sequi neque.
+                            Ducimus doloremque odit maiores, quia in esse animi id possimus laboriosam ullam nihil sed.
+                            Aspernatur, ipsam. Libero ut consectetur praesentium? Numquam minima labore, perspiciatis
+                            porro
+                            veniam obcaecati consectetur dolores. Unde odio iusto consequatur molestias cum vitae
+                            dolores
+                            numquam accusamus.
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                            aria-labelledby="v-pills-settings-tab">Repudiandae vitae sapiente neque harum cupiditate
+                            placeat
+                            molestiae quasi eaque ducimus, fuga incidunt rem adipisci quam ex. Ab quia quas pariatur
+                            provident eius recusandae rem quisquam consectetur suscipit officiis nesciunt soluta sed,
+                            animi
+                            nisi explicabo ipsam, eum nobis hic minus corrupti sunt optio! Eius nisi nostrum laborum
+                            excepturi quaerat? Consequuntur adipisci repellendus odio esse, aliquam quod!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="services__perpustakaan my-4 p-2">
+            <h2>PERPUSTAKAAN</h2>
+            <div class="row p-4">
+                <div class="col-3 services__col">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-ar1-tab" data-toggle="pill" href="#v-pills-ar1"
+                            role="tab" aria-controls="v-pills-ar1" aria-selected="true">Home</a>
+                        <a class="nav-link" id="v-pills-ar2-tab" data-toggle="pill" href="#v-pills-ar2" role="tab"
+                            aria-controls="v-pills-ar2" aria-selected="false">Profile</a>
+                        <a class="nav-link" id="v-pills-ar3-tab" data-toggle="pill" href="#v-pills-ar3" role="tab"
+                            aria-controls="v-pills-ar3" aria-selected="false">Messages</a>
+                        <a class="nav-link" id="v-pills-ar4-tab" data-toggle="pill" href="#v-pills-ar4" role="tab"
+                            aria-controls="v-pills-ar4" aria-selected="false">Settings</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-ar1" role="tabpanel"
+                            aria-labelledby="v-pills-ar1-tab">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quasi, incidunt nulla nesciunt
+                            nam
+                            delectus rerum sed? Ratione at beatae quidem, exercitationem, ea dolorem voluptatem impedit
+                            nesciunt, accusamus sit vitae.</div>
+                        <div class="tab-pane fade" id="v-pills-ar2" role="tabpanel" aria-labelledby="v-pills-ar2-tab">
+                            Animi
+                            voluptates ipsum quae voluptatem id harum eligendi
+                            sunt dolorum deleniti accusamus, tempore iusto corrupti assumenda omnis iure sint, atque
+                            impedit
+                            totam deserunt. Quibusdam porro consequatur maiores quas cumque eius nemo, exercitationem
+                            veniam
+                            beatae quis dicta cum quia consectetur, nostrum sapiente est.
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ar3" role="tabpanel" aria-labelledby="v-pills-ar3-tab">
+                            Accusamus praesentium reprehenderit nemo sequi neque.
+                            Ducimus doloremque odit maiores, quia in esse animi id possimus laboriosam ullam nihil sed.
+                            Aspernatur, ipsam. Libero ut consectetur praesentium? Numquam minima labore, perspiciatis
+                            porro
+                            veniam obcaecati consectetur dolores. Unde odio iusto consequatur molestias cum vitae
+                            dolores
+                            numquam accusamus.
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ar4" role="tabpanel" aria-labelledby="v-pills-ar4-tab">
+                            Repudiandae vitae sapiente neque harum cupiditate placeat
+                            molestiae quasi eaque ducimus, fuga incidunt rem adipisci quam ex. Ab quia quas pariatur
+                            provident eius recusandae rem quisquam consectetur suscipit officiis nesciunt soluta sed,
+                            animi
+                            nisi explicabo ipsam, eum nobis hic minus corrupti sunt optio! Eius nisi nostrum laborum
+                            excepturi quaerat? Consequuntur adipisci repellendus odio esse, aliquam quod!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
 
+<section class="container-fluid my-5 text-center">
+    <h1>Berita</h1>
+    <div id="news-wrapper" class="row my-4">
+        {% for post in blogPosts.posts %}
+        <div class="col-md-3 my-2">
+            <div class="card" style="width: 100%;">
+                <img class="card-img-top" src="{{ post.featured_images.first.path }}"
+                    alt="{{post.featured_images.description}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <form id="loadmore" class="col-md-12 my-4">
+            <button type="submit" class="mx-auto btn btn-outline-primary">Tampilkan Lebih Banyak</button>
+        </form>
+    </div>
+</section>

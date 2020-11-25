@@ -1,91 +1,124 @@
-.home {
-	background-color: #52278E;
+.services__kearsipan,
+.services__perpustakaan {
+    min-height: 70vh;
+    overflow: hidden;
+    transition: flex-basis 2000ms ease-in-out;
 }
 
-.home__github {
-	position: absolute;
-	left: 1rem;
-	top: 1rem;
+.services__col a {
+    font-weight: bold;
 }
 
-.home__utopig {
-	position: absolute;
-	right: .7rem;
-	top: .6rem;
+.services__kearsipan {
+    * {
+        color: $foursquarenavy !important;
+    }
 
-	&:hover img {
-		animation: float 3s ease-in-out infinite;
-	}
+    a.nav-link.active {
+        background: lighten($color: $foursquarenavy, $amount: 60) !important;
+    }
+
+    &::before {
+        content: " ";
+        background-image: url('https://cdn.pixabay.com/photo/2014/03/08/17/46/book-283251_960_720.jpg');
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        opacity: 0.45;
+        z-index: -1;
+    }
+
+    &.opacity {
+        &::before {
+            opacity: 1;
+        }
+
+        * {
+            color: white !important;
+        }
+
+        h2 {
+            background: $foursquarenavy;
+        }
+
+        div.nav {
+            background: darken($color: $foursquarenavy, $amount: 5%);
+
+            a.nav-link.active {
+                color: $foursquarenavy !important;
+            }
+        }
+
+    }
+
 }
 
-.header {
-	text-align: center;
-	padding: 5rem 0 5rem;
-	color: $white;
+.services__perpustakaan {
+    * {
+        color: $deeporange !important;
+    }
+
+    a.nav-link.active {
+        background: lighten($color: $deeporange, $amount: 60) !important;
+    }
+
+    &::before {
+        content: " ";
+        background-image: url('https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_960_720.jpg');
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        opacity: 0.45;
+        z-index: -1;
+    }
+
+    &.opacity {
+        &::before {
+            opacity: 1;
+        }
+
+        * {
+            color: white !important;
+        }
+
+        h2 {
+            background: $deeporange;
+        }
+
+        div.nav {
+            background: darken($color: $deeporange, $amount: 5%);
+
+            a.nav-link.active {
+                color: $deeporange !important;
+            }
+        }
+    }
+
 }
 
-.header__title {
-	font-weight: 600;
+.services__kearsipan,
+.services__perpustakaan {
+    position: relative;
+
+
+
+    h2 {
+        font-weight: bold;
+    }
 }
 
-.header__subtitle {
-	@include font-size(18);
-	margin-top: 1em;
-}
+#news-wrapper .col-md-3 {
+    & .card {
+        transition: all .3s ease-in-out;
 
-.home__content {
-	background-image: linear-gradient(-8deg, #52278E 4%, #602FA4 94%);
-	padding: 3rem 0 7rem;
-}
-
-.home__section {
-	margin-top: 3rem;
-}
-
-.home__sec-title {
-	@include font-size(22);
-	font-weight: 600;
-	color: $white;
-	margin-bottom: 1.5rem;
-}
-
-.home__indent {
-	padding-left: 2rem;
-
-	ul {
-		color: $white;
-	}
-
-	li {
-		@include font-size(15);
-		margin-bottom: 1em;
-	}
-}
-
-.home__logos {
-	margin-top: -2.3rem;
-
-	p {
-		color: $white;
-		margin-top: -.6rem;
-	}
-}
-
-@media (max-width: $lg) {
-	.home__utopig,
-	.home__github {
-		display: none;
-	}
-}
-
-@media (max-width: $md) {
-	.home__indent {
-		padding-left: .8rem;
-	}
-}
-
-@media (max-width: $sm) {
-	.home__indent {
-		padding-left: 0;
-	}
+        &:hover {
+            @include boxShadow;
+        }
+    }
 }
