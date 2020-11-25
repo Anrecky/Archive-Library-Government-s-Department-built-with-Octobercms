@@ -30,4 +30,4 @@ When you are ready for production:
 - Run `npm run prod`
 - You don't need to upload `node_modules` and `src` folders to the production host if you don't compile your assets there
 
-Enjoy!
+Enjoy!# tes
