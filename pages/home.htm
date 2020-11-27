@@ -42,165 +42,117 @@ return[
 }
 ?>
 ==
-
-{% if recordDetail.images_media|length %}
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        {% for mediaImage in recordDetail.images_media %}
-        <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index }}"
-            class="{% if loop.first %}active{% endif %}"></li>
-        {% endfor %}
-    </ol>
-    <div class="carousel-inner">
-        {% for mediaImage in recordDetail.images_media %}
-        <div class="carousel-item {% if loop.first %}active{% endif %}">
-            <img style="height: 90vh;" class="d-block w-100" src="{{mediaImage.image|media}}"
-                alt="{{mediaImage.image_title ? mediaImage.image_title : recordDetail.recordDetail.name}}">
-        </div>
-        {% endfor %}
-
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-{% endif %}
-
-<section class="container-fluid my-5 px-md-0 text-center">
-    <h1>Layanan</h1>
-    <div class="services__wrapper d-flex my-4">
-        <article class="services__kearsipan my-4 p-2">
-            <h2>KEARSIPAN</h2>
-            <div class="row p-4">
-                <div class="col-3 services__col">
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
-                            role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
-                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                            aria-labelledby="v-pills-home-tab">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quasi, incidunt nulla nesciunt
-                            nam
-                            delectus rerum sed? Ratione at beatae quidem, exercitationem, ea dolorem voluptatem impedit
-                            nesciunt, accusamus sit vitae.</div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab">Animi voluptates ipsum quae voluptatem id harum
-                            eligendi
-                            sunt dolorum deleniti accusamus, tempore iusto corrupti assumenda omnis iure sint, atque
-                            impedit
-                            totam deserunt. Quibusdam porro consequatur maiores quas cumque eius nemo, exercitationem
-                            veniam
-                            beatae quis dicta cum quia consectetur, nostrum sapiente est.
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab">Accusamus praesentium reprehenderit nemo sequi neque.
-                            Ducimus doloremque odit maiores, quia in esse animi id possimus laboriosam ullam nihil sed.
-                            Aspernatur, ipsam. Libero ut consectetur praesentium? Numquam minima labore, perspiciatis
-                            porro
-                            veniam obcaecati consectetur dolores. Unde odio iusto consequatur molestias cum vitae
-                            dolores
-                            numquam accusamus.
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                            aria-labelledby="v-pills-settings-tab">Repudiandae vitae sapiente neque harum cupiditate
-                            placeat
-                            molestiae quasi eaque ducimus, fuga incidunt rem adipisci quam ex. Ab quia quas pariatur
-                            provident eius recusandae rem quisquam consectetur suscipit officiis nesciunt soluta sed,
-                            animi
-                            nisi explicabo ipsam, eum nobis hic minus corrupti sunt optio! Eius nisi nostrum laborum
-                            excepturi quaerat? Consequuntur adipisci repellendus odio esse, aliquam quod!
+<main class="main-content">
+    {% if recordDetail.images_media|length %}
+    <section class="slideshow">
+        <div class="slideshow-inner">
+            <div class="slides">
+                {% for mediaImage in recordDetail.images_media %}
+                <div class="slide {{ loop.first ? 'is-active' :''}}">
+                    <div class="slide-content">
+                        <div class="caption">
+                            <div class="title">Slide title 1</div>
+                            <div class="text">
+                                <p>Slide description 1</p>
+                            </div>
                         </div>
                     </div>
+                    <div class="image-container">
+                        <img src="{{mediaImage.image|media}}"
+                            alt="{{mediaImage.image_title ? mediaImage.image_title : recordDetail.recordDetail.name}}"
+                            class="image" />
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-        </article>
-        <article class="services__perpustakaan my-4 p-2">
-            <h2>PERPUSTAKAAN</h2>
-            <div class="row p-4">
-                <div class="col-3 services__col">
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-ar1-tab" data-toggle="pill" href="#v-pills-ar1"
-                            role="tab" aria-controls="v-pills-ar1" aria-selected="true">Home</a>
-                        <a class="nav-link" id="v-pills-ar2-tab" data-toggle="pill" href="#v-pills-ar2" role="tab"
-                            aria-controls="v-pills-ar2" aria-selected="false">Profile</a>
-                        <a class="nav-link" id="v-pills-ar3-tab" data-toggle="pill" href="#v-pills-ar3" role="tab"
-                            aria-controls="v-pills-ar3" aria-selected="false">Messages</a>
-                        <a class="nav-link" id="v-pills-ar4-tab" data-toggle="pill" href="#v-pills-ar4" role="tab"
-                            aria-controls="v-pills-ar4" aria-selected="false">Settings</a>
-                    </div>
+            <div class="indicators">
+                {% for slideshow in recordDetail.images_media %}
+                <div class="item {{ loop.first ? 'is-active' :''}}">
+                    <span class="icon">{{loop.index}}</span>
                 </div>
-                <div class="col-9">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-ar1" role="tabpanel"
-                            aria-labelledby="v-pills-ar1-tab">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quasi, incidunt nulla nesciunt
-                            nam
-                            delectus rerum sed? Ratione at beatae quidem, exercitationem, ea dolorem voluptatem impedit
-                            nesciunt, accusamus sit vitae.</div>
-                        <div class="tab-pane fade" id="v-pills-ar2" role="tabpanel" aria-labelledby="v-pills-ar2-tab">
-                            Animi
-                            voluptates ipsum quae voluptatem id harum eligendi
-                            sunt dolorum deleniti accusamus, tempore iusto corrupti assumenda omnis iure sint, atque
-                            impedit
-                            totam deserunt. Quibusdam porro consequatur maiores quas cumque eius nemo, exercitationem
-                            veniam
-                            beatae quis dicta cum quia consectetur, nostrum sapiente est.
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-ar3" role="tabpanel" aria-labelledby="v-pills-ar3-tab">
-                            Accusamus praesentium reprehenderit nemo sequi neque.
-                            Ducimus doloremque odit maiores, quia in esse animi id possimus laboriosam ullam nihil sed.
-                            Aspernatur, ipsam. Libero ut consectetur praesentium? Numquam minima labore, perspiciatis
-                            porro
-                            veniam obcaecati consectetur dolores. Unde odio iusto consequatur molestias cum vitae
-                            dolores
-                            numquam accusamus.
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-ar4" role="tabpanel" aria-labelledby="v-pills-ar4-tab">
-                            Repudiandae vitae sapiente neque harum cupiditate placeat
-                            molestiae quasi eaque ducimus, fuga incidunt rem adipisci quam ex. Ab quia quas pariatur
-                            provident eius recusandae rem quisquam consectetur suscipit officiis nesciunt soluta sed,
-                            animi
-                            nisi explicabo ipsam, eum nobis hic minus corrupti sunt optio! Eius nisi nostrum laborum
-                            excepturi quaerat? Consequuntur adipisci repellendus odio esse, aliquam quod!
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-        </article>
-    </div>
-</section>
-
-<section class="container-fluid my-5 text-center">
-    <h1>Berita</h1>
-    <div id="news-wrapper" class="row my-4">
-        {% for post in blogPosts.posts %}
-        <div class="col-md-3 my-2">
-            <div class="card" style="width: 100%;">
-                <img class="card-img-top" src="{{ post.featured_images.first.path }}"
-                    alt="{{post.featured_images.description}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    <p class="card-text">{{ post.excerpt }}</p>
+            <div class="arrows">
+                <div class="arrow prev">
+                    <span class="svg svg-arrow-left">
+                        <svg version="1.1" id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px"
+                            viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve">
+                            <path
+                                d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z" />
+                        </svg>
+                        <span class="alt sr-only"></span>
+                    </span>
+                </div>
+                <div class="arrow next">
+                    <span class="svg svg-arrow-right">
+                        <svg version="1.1" id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px"
+                            viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve">
+                            <path
+                                d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z" />
+                        </svg>
+                        <span class="alt sr-only"></span>
+                    </span>
                 </div>
             </div>
         </div>
-        {% endfor %}
-        <form id="loadmore" class="col-md-12 my-4">
-            <button type="submit" class="mx-auto btn btn-outline-primary">Tampilkan Lebih Banyak</button>
-        </form>
-    </div>
-</section>
+    </section>
+    {% endif %}
+
+    <section class="container-fluid px-0 text-center services">
+        <h1 class="font-weight-bold h1">Layanan</h1>
+        <div class="services__wrapper d-flex mt-3">
+            <article class="services__kearsipan col-md-6">
+                <a href="#">
+                    <img src="{{ 'assets/images/service-kearsipan.png'|theme }}" class="p-5 img-fluid"
+                        alt="Gambar Layanan Kearsipan">
+                </a>
+            </article>
+            <article class="services__perpustakaan col-md-6">
+                <a href="#">
+                    <img src="{{ 'assets/images/service-perpustakaan.png'|theme }}" class="p-5 img-fluid"
+                        alt="Gambar Layanan Perpustakaan">
+                </a>
+            </article>
+        </div>
+    </section>
+    <section class="container-fluid text-center px-0 event">
+        <h1 class="font-weight-bold h1">Event</h1>
+        <div class="row">
+            {% for post in blogPosts.posts %}
+            <div class="col-md-3 mt-2 mb-5">
+                <div class="card" style="width: 100%;">
+                    <img class="card-img-top" src="{{ post.featured_images.first.path }}"
+                        alt="{{post.featured_images.description}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.excerpt }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="container-fluid text-center berita">
+        <h1 class="font-weight-bold h1">Berita</h1>
+        <div id="news-wrapper" class="row my-4">
+            {% for post in blogPosts.posts %}
+            <div class="col-md-3 my-2">
+                <div class="card" style="width: 100%;">
+                    <img class="card-img-top" src="{{ post.featured_images.first.path }}"
+                        alt="{{post.featured_images.description}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.excerpt }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <form id="loadmore" class="col-md-12 my-4">
+                <button type="submit" class="mx-auto btn btn-outline-primary">Tampilkan Lebih Banyak</button>
+            </form>
+        </div>
+    </section>
+
+</main>

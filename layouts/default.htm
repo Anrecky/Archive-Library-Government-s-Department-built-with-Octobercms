@@ -32,12 +32,14 @@ function onInit()
     <link rel="icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
 
     <link href="{{ this.layout.styles }}" rel="stylesheet">
-
     {% styles %}
 
 </head>
 
 <body class="{{ this.page.bodyClass }}">
+    <div class="preloader__wrapper">
+        <div class="preloader"></div>
+    </div>
     <div id="js--webapp">
 
         {% partial 'nav' %}
@@ -45,6 +47,7 @@ function onInit()
         {% page %}
 
         {% partial 'footer' %}
+
 
     </div>
 
