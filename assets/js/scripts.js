@@ -30890,9 +30890,9 @@ jQuery(function () {
 /***/ (function(module, exports) {
 
 jQuery(function () {
-  // setTimeout(() => {
-  //     $(".preloader__wrapper").hide();
-  // }, 1350);
+  setTimeout(function () {
+    $(".preloader__wrapper").hide();
+  }, 1350);
   var kearsipanService = $(".services__kearsipan");
   var perpustakaanService = $(".services__perpustakaan"); // News AJAX
 
