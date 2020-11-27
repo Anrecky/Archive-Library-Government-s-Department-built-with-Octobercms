@@ -18797,6 +18797,12 @@ body {
     -ms-transform: rotate(0deg);
   }
 }
+@media (max-width: 575.98px) {
+  .preloader__wrapper {
+    padding-top: 60%;
+    padding-left: 25%;
+  }
+}
 .slideshow {
   overflow: hidden;
   position: relative;
