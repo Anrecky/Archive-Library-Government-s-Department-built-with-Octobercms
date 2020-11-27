@@ -19142,8 +19142,8 @@ section.events {
 }
 .services__kearsipan a:hover img,
 .services__perpustakaan a:hover img {
-  -webkit-box-shadow: 0 0px 12px 0 rgba(35, 25, 25, 0.43);
-          box-shadow: 0 0px 12px 0 rgba(35, 25, 25, 0.43);
+  -webkit-box-shadow: 0 0px 12px 0 white !important;
+          box-shadow: 0 0px 12px 0 white !important;
 }
 
 .services__kearsipan h2,
