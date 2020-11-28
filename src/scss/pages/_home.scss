@@ -1,0 +1,76 @@
+@import "components/slideshows";
+@import "components/events";
+
+nav.navbar {
+    height: 10vh;
+    z-index: 2;
+    background: transparent;
+}
+
+main.main-content {
+    margin-top: -10vh;
+}
+
+section {
+    min-height: 100vh;
+
+    h1.h1 {
+        padding-top: 4.1875rem;
+        padding-bottom: 4.15625rem;
+        margin: 0;
+        color: white;
+    }
+}
+
+.services__col a {
+    font-weight: bold;
+}
+
+section.services {
+    background: url('../images/bg_arpusda.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 0;
+}
+
+section.events {
+    background: url('../images/bg_arpusda2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 0;
+}
+
+.services__kearsipan,
+.services__perpustakaan {
+    a {
+        img {
+            transition: all 0.35s ease-in-out;
+        }
+
+        &:hover {
+            img {
+                box-shadow: 0 0px 12px 0 rgba(255, 255, 255, 1) !important;
+            }
+        }
+    }
+}
+
+.services__kearsipan,
+.services__perpustakaan {
+
+    h2 {
+        font-weight: bold;
+    }
+}
+
+#news-wrapper .col-md-3 {
+    & .card {
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            @include boxShadow;
+        }
+    }
+}
