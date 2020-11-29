@@ -30865,6 +30865,14 @@ jQuery(function () {
     touchRatio: 0.2,
     slideToClickedSlide: true,
     direction: 'vertical',
+    breakpoints: {
+      320: {
+        direction: 'horizontal'
+      },
+      480: {
+        direction: 'horizontal'
+      }
+    },
     on: {
       imagesReady: function imagesReady() {
         this.el.classList.remove('loading');
@@ -30912,6 +30920,13 @@ jQuery(function () {
         successCount++;
       }
     });
+  });
+  $("#kearsipanBtn, #perpustakaanBtn").on("click", function () {
+    $("#servicesContent").css('width', '100%');
+  });
+  $(".closeService").on("click", function () {
+    $("#servicesContent").css('width', '0%');
+    $("#servicesContent").css('overflow', 'hidden');
   });
 });
 

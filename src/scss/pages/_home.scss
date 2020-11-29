@@ -1,4 +1,5 @@
 @import "components/slideshows";
+@import "components/services";
 @import "components/events";
 
 nav.navbar {
@@ -42,6 +43,14 @@ section.events {
     margin-top: 0;
 }
 
+section.publikasi {
+    background: url('../images/bg_arpusda.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 0;
+}
+
 .services__kearsipan,
 .services__perpustakaan {
     a {
@@ -57,13 +66,6 @@ section.events {
     }
 }
 
-.services__kearsipan,
-.services__perpustakaan {
-
-    h2 {
-        font-weight: bold;
-    }
-}
 
 #news-wrapper .col-md-3 {
     & .card {

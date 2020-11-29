@@ -46,14 +46,14 @@
 .nav-brand {
     line-height: 70px;
     padding: 0;
-    color: #343a40;
+    color: $seco;
     font-size: 24px;
     text-decoration: none !important;
 }
 
 .nav-brand:hover,
 .nav-brand:focus {
-    color: #343a40;
+    color: lighten($color: $seco, $amount: 20);
 }
 
 .navigation-portrait .nav-brand {
@@ -95,9 +95,9 @@
     position: absolute;
     width: 24px;
     height: 2px;
-    background-color: #343a40;
+    background-color: $seco;
     border-radius: 10px;
-    box-shadow: 0 0.5em 0 0 #343a40, 0 1em 0 0 #343a40;
+    box-shadow: 0 0.5em 0 0 $seco, 0 1em 0 0 $seco;
 }
 
 .navigation-portrait .nav-toggle {
@@ -210,7 +210,7 @@
 .nav-menu>li:hover>a,
 .nav-menu>li.active>a,
 .nav-menu>li.focus>a {
-    color: #27ae60;
+    color: $seco;
 }
 
 .nav-menu>li>a>i,
@@ -388,7 +388,7 @@
 }
 
 .nav-search-button:hover .nav-search-icon {
-    color: #27ae60;
+    color: $seco;
 }
 
 .nav-search>form {
@@ -541,7 +541,7 @@
 
 .nav-dropdown>li:hover>a,
 .nav-dropdown>li.focus>a {
-    color: #27ae60;
+    color: $seco;
 }
 
 .nav-dropdown.nav-dropdown-left {
@@ -600,7 +600,7 @@
 
 .nav-dropdown>li:hover>a .submenu-indicator-chevron,
 .nav-dropdown>.focus>a .submenu-indicator-chevron {
-    border-color: transparent #27ae60 #27ae60 transparent;
+    border-color: transparent $seco $seco transparent;
 }
 
 .navigation-landscape .nav-dropdown.nav-dropdown-left .submenu-indicator {
@@ -883,7 +883,7 @@
 }
 
 .megamenu-list>li>a:hover {
-    background-color: #27ae60;
+    background-color: $seco;
     color: #fff;
 }
 
@@ -927,7 +927,7 @@
 
 .nav-dropdown>li>a:hover,
 .nav-dropdown>li>a:focus {
-    color: #27ae60;
+    color: $seco;
 }
 
 .main_header_area.sticky {
@@ -964,7 +964,7 @@
 
 @include media-breakpoint-up(md) {
     a.nav-brand {
-        color: white;
+        color: $seco;
         font-weight: bold;
     }
 

@@ -18989,6 +18989,93 @@ body {
   transition: left 0.2s ease;
 }
 
+.services__content {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  /* Stay in place */
+  z-index: 6;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: black;
+  /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/opacity */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+.services__content .card:hover .card-text {
+  max-height: 500px;
+  -webkit-transition: max-height 0.75s ease-in;
+  transition: max-height 0.75s ease-in;
+}
+.services__content .card .card-text {
+  max-height: 0;
+  -webkit-transition: max-height 0.75s ease-out;
+  transition: max-height 0.75s ease-out;
+  overflow: hidden;
+}
+.services__content .close {
+  position: absolute;
+  top: 5%;
+  right: 4%;
+  width: 45px;
+  height: 45px;
+  border: 2.85px solid transparent;
+  border-radius: 25%;
+  font-size: 0;
+  color: transparent;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+  -webkit-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+.services__content .close:hover {
+  border-color: #FF7C00;
+  -webkit-transition: all 100ms 100ms ease-in;
+  transition: all 100ms 100ms ease-in;
+}
+.services__content .close:before, .services__content .close:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  background-color: #FF7C00;
+  -webkit-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+}
+.services__content .close:hover:before, .services__content .close:hover:after {
+  -webkit-transition: all 100ms 100ms ease-out;
+  transition: all 100ms 100ms ease-out;
+}
+.services__content .close:before {
+  width: 22px;
+  height: 3px;
+  margin: -5px auto auto -14px;
+}
+.services__content .close:after {
+  width: 3px;
+  height: 22px;
+  margin: -14px auto auto -5px;
+}
+.services__content .close:hover:before {
+  width: 14px;
+  height: 2px;
+  margin: -2px auto auto -8px;
+}
+.services__content .close:hover:after {
+  width: 2px;
+  height: 14px;
+  margin: -8px auto auto -2px;
+}
+
 [class^=swiper-button-] {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -19101,6 +19188,15 @@ body {
           transform: translateX(-50px);
 }
 
+@media (max-width: 767.98px) {
+  .nav-slider {
+    height: 30vh;
+  }
+
+  .main-slider {
+    height: 60vh;
+  }
+}
 nav.navbar {
   height: 10vh;
   z-index: 2;
@@ -19141,6 +19237,14 @@ section.events {
   margin-top: 0;
 }
 
+section.publikasi {
+  background: url("../images/bg_arpusda.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 0;
+}
+
 .services__kearsipan a img,
 .services__perpustakaan a img {
   -webkit-transition: all 0.35s ease-in-out;
@@ -19152,11 +19256,6 @@ section.events {
           box-shadow: 0 0px 12px 0 white !important;
 }
 
-.services__kearsipan h2,
-.services__perpustakaan h2 {
-  font-weight: bold;
-}
-
 #news-wrapper .col-md-3 .card {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -19164,9 +19263,4 @@ section.events {
 #news-wrapper .col-md-3 .card:hover {
   -webkit-box-shadow: 0 0px 12px 0 rgba(35, 25, 25, 0.43);
           box-shadow: 0 0px 12px 0 rgba(35, 25, 25, 0.43);
-}
-
-section.publikasi {
-  background: #001F46, #FF7C00;
-  background-blend-mode: multiply;
 }

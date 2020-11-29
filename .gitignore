@@ -1,2 +1,8 @@
 /node_modules
 .DS_Store
+package.json
+yarn.lock
+/src
+src/scss/base/_color-palette.scss
+src/scss/components/_events.scss
+src/scss/pages/_home.scss

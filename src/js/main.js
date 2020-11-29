@@ -24,5 +24,15 @@ jQuery(function () {
         });
     });
 
+    $("#kearsipanBtn, #perpustakaanBtn").on("click", function () {
+        $("#servicesContent").css('width', '100%');
+
+    })
+    $(".closeService").on("click", function () {
+        $("#servicesContent").css('width', '0%');
+        $("#servicesContent").css('overflow', 'hidden');
+
+    })
+
 
 })

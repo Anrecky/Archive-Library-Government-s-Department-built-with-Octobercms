@@ -42,6 +42,37 @@ return[
 }
 ?>
 ==
+<div id="servicesContent" class="services__content">
+    <!-- Button to close the overlay navigation -->
+    <button type="button" class="closeService close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="container-fluid my-5">
+        <h1 class="text-white text-center mb-5 mb-md-0">Layanan</h1>
+        <div class="row my-4">
+            <div class="col-md-3 col-4 my-md-4 my-2 py-4">
+                <div class="card">
+                    <img class="card-img-top mt-n3 mt-n5 p-md-3" src="{{'assets/images/3449506.jpg'|theme}}"
+                        alt="Card image cap">
+                    <div class="card-body d-none d-md-block">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi esse neque
+                            repellat expedita alias dignissimos placeat animi eveniet quis repellendus amet fugit
+                            possimus, exercitationem nisi ducimus? Culpa cumque vero adipisci consectetur consequuntur
+                            suscipit, dicta maiores. Iusto, aliquam? Corrupti assumenda ducimus labore, possimus earum
+                            id alias ab sapiente at sunt cum sint saepe, voluptatum harum in suscipit pariatur, nesciunt
+                            nobis deleniti facere veritatis animi ullam? Pariatur nemo quidem quos impedit et cum culpa,
+                            eligendi iure soluta consectetur, aliquid officia explicabo odit corrupti esse. Amet quia
+                            error dicta, natus quam reprehenderit placeat deleniti labore soluta laudantium illum sint
+                            harum vero. Voluptatum, a.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <main class="main-content">
     {% if recordDetail.images_media|length %}
     <section class="slideshow">
@@ -104,13 +135,13 @@ return[
         <h1 class="font-weight-bold h1">Layanan</h1>
         <div class="services__wrapper row">
             <article class="services__kearsipan col-md-6 my-2 my-md-0">
-                <a href="#">
+                <a aria-label="Close" id="kearsipanBtn" href="javascript:void(0)">
                     <img src="{{ 'assets/images/service-kearsipan.png'|theme }}" class="p-5 shadow img-fluid"
                         alt="Gambar Layanan Kearsipan">
                 </a>
             </article>
             <article class="services__perpustakaan col-md-6 my-2 my-md-0">
-                <a href="#">
+                <a aria-label="Close" id="perpustakaanBtn" href="javascript:void(0)">
                     <img src="{{ 'assets/images/service-perpustakaan.png'|theme }}" class="p-5 shadow img-fluid"
                         alt="Gambar Layanan Perpustakaan">
                 </a>
@@ -120,7 +151,7 @@ return[
     <section class="container-fluid text-center events">
         <h1 class="font-weight-bold h1">Event</h1>
         <div class="row px-0 mx-0">
-            <div class="swiper-container main-slider loading col-md-9">
+            <div class="swiper-container main-slider loading col-md-9 col-12">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <figure class="slide-bgimg"
@@ -194,7 +225,7 @@ return[
             </div>
 
             <!-- Thumbnail navigation -->
-            <div class="swiper-container nav-slider loading col-md-3">
+            <div class="swiper-container nav-slider loading col-md-3 col-12">
                 <div class="swiper-wrapper" role="navigation">
                     <div class="swiper-slide">
                         <figure class="slide-bgimg"
@@ -253,7 +284,7 @@ return[
     <section class="container-fluid text-center publikasi">
         <h1 class="font-weight-bold h1">Publikasi</h1>
         <div class="row">
-            <article class="col-md-6">
+            <article class="col-md-7">
                 <h1 class="font-weight-bold h3 text-white">Berita</h1>
                 <div id="news-wrapper" class="row my-4">
                     {% for post in blogPosts.posts %}

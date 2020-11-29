@@ -4,7 +4,7 @@
 code = "main-menu"
 ==
 
-{% set menu = staticMenu.menuItems %}
+{% set menus = staticMenu.menuItems %}
 
 
 <header class="header_area">
@@ -31,9 +31,9 @@ code = "main-menu"
                 <!-- Main Menus Wrapper -->
                 <div class="nav-menus-wrapper">
                     <ul class="nav-menu align-to-left">
-                        <li><a href="../classy-shortcodes/index.html" target="_blank">Shortcodes <span
-                                    class="label label-pill label-primary">New</span></a></li>
-                        <li><a href="../classy-onepage/all-demo-pages.html" target="_blank">One Page</a></li>
+                        {% for menu in menus %}
+                        <li class="{{menu.isActive ? 'active':''}}"><a href="{{menu.url}}">{{menu.title}}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </nav>

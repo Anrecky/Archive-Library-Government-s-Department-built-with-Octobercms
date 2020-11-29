@@ -73,6 +73,14 @@
          touchRatio: 0.2,
          slideToClickedSlide: true,
          direction: 'vertical',
+         breakpoints: {
+             320: {
+                 direction: 'horizontal'
+             },
+             480: {
+                 direction: 'horizontal'
+             },
+         },
          on: {
              imagesReady: function () {
                  this.el.classList.remove('loading');
