@@ -24,6 +24,7 @@ postPage = "home"
 ==
 <?php
 use RainLab\Blog\Models\Post;
+use Janvince\SmallRecords\Models\Record;
 
 function onStart()
 {
@@ -40,6 +41,16 @@ return[
 'nFetch'=>(int)post('nFetch')
 ];
 }
+function onLoadServices()
+{
+    $service_type = post('serviceType');
+    $services = Record::where('category_id',$service_type)->orderBy('created_at', 'desc')->get();
+$this['services'] = $services;
+return[
+'services'=>$services,
+'nFetch'=>(int)post('nFetch')
+];
+}
 ?>
 ==
 <div id="servicesContent" class="services__content">
@@ -49,26 +60,7 @@ return[
     </button>
     <div class="container-fluid my-5">
         <h1 class="text-white text-center mb-5 mb-md-0">Layanan</h1>
-        <div class="row my-4">
-            <div class="col-md-3 col-4 my-md-4 my-2 py-4">
-                <div class="card">
-                    <img class="card-img-top mt-n3 mt-n5 p-md-3" src="{{'assets/images/3449506.jpg'|theme}}"
-                        alt="Card image cap">
-                    <div class="card-body d-none d-md-block">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi esse neque
-                            repellat expedita alias dignissimos placeat animi eveniet quis repellendus amet fugit
-                            possimus, exercitationem nisi ducimus? Culpa cumque vero adipisci consectetur consequuntur
-                            suscipit, dicta maiores. Iusto, aliquam? Corrupti assumenda ducimus labore, possimus earum
-                            id alias ab sapiente at sunt cum sint saepe, voluptatum harum in suscipit pariatur, nesciunt
-                            nobis deleniti facere veritatis animi ullam? Pariatur nemo quidem quos impedit et cum culpa,
-                            eligendi iure soluta consectetur, aliquid officia explicabo odit corrupti esse. Amet quia
-                            error dicta, natus quam reprehenderit placeat deleniti labore soluta laudantium illum sint
-                            harum vero. Voluptatum, a.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+        <div id="services-wrapper" class="row my-4">
 
         </div>
     </div>
@@ -81,7 +73,7 @@ return[
                 {% for mediaImage in recordDetail.images_media %}
                 <div class="slide {{ loop.first ? 'is-active' :''}}">
                     <div class="slide-content">
-                        <div class="caption">
+                        <div class="caption d-none">
                             <div class="title">Slide title 1</div>
                             <div class="text">
                                 <p>Slide description 1</p>

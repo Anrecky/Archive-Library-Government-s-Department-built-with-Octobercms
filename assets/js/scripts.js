@@ -30870,7 +30870,8 @@ jQuery(function () {
         direction: 'horizontal'
       },
       480: {
-        direction: 'horizontal'
+        direction: 'horizontal',
+        slidesPerView: 3
       }
     },
     on: {
@@ -30900,9 +30901,7 @@ jQuery(function () {
 jQuery(function () {
   setTimeout(function () {
     $(".preloader__wrapper").hide();
-  }, 1350);
-  var kearsipanService = $(".services__kearsipan");
-  var perpustakaanService = $(".services__perpustakaan"); // News AJAX
+  }, 1350); // News AJAX
 
   var successCount = 1;
   $('#loadmore').submit(function (event) {
@@ -30913,20 +30912,55 @@ jQuery(function () {
       },
       loading: $.oc.stripeLoadIndicator,
       success: function success(data) {
-        console.log(data.news);
         data.news.forEach(function (news) {
-          $("<div class=\"col-md-3 my-2\"><div class=\"card\" style=\"width: 100%;\"><img class=\"card-img-top\" src=\"".concat(news.featured_images[0].path, "\" alt=\"").concat(news.featured_images[0].description, "\"><div class=\"card-body\"><h5 class=\"card-title\">").concat(news.title, "</h5><p class=\"card-text\">").concat(news.excerpt, "</p></div></div></div>")).insertBefore('#loadmore');
+          $("<div class=\"col-md-3 my-2\"><div class=\"card\" style=\"width: 100%;\"><img class=\"card-img-top\" src=\"".concat(news.featured_images[0].path, "\" alt=\"").concat(news.featured_images[0].description, "\"><div class=\"card-body\"><h5 class=\"card-title\">").concat(news.title, "</h5><p class=\"card-text\">").concat(news.excerpt, "</p></div></div></div>")).insertBefore('#loadmore').slideDown();
         });
         successCount++;
+      }
+    });
+  }); // Services AJAX
+
+  var serviceType = null;
+  $("#kearsipanBtn").on('click', function () {
+    serviceType = 1;
+    $(this).request('onLoadServices', {
+      data: {
+        serviceType: serviceType
+      },
+      loading: $.oc.stripeLoadIndicator,
+      success: function success(data) {
+        console.log(data);
+        $('#services-wrapper').empty();
+        data.services.forEach(function (service) {
+          $('#services-wrapper').append("<div class=\"col-md-3 col-4 my-md-4 my-2 py-4\"><div class=\"card\">".concat(service.images_media[0] ? "<img class=\"card-img-top mt-n3 mt-n5 p-md-3\" src=\"".concat(service.images_media[0].image, "\" alt=\"").concat(service.images_media[0].image_title, "\">") : "", "<div class=\"card-body d-none d-md-block\"><h5 class=\"card-title\">").concat(service.name, "</h5><p class=\"card-text\">").concat(service.description, "</p>").concat(service.url ? "<a href=\"".concat(service.url, "\" class=\"btn btn-sm btn-outline-info\">Menuju Link</a>") : "", "</div></div></div>")).slideDown();
+        });
+      }
+    });
+  });
+  $("#perpustakaanBtn").on('click', function () {
+    serviceType = 2;
+    $(this).request('onLoadServices', {
+      data: {
+        serviceType: serviceType
+      },
+      loading: $.oc.stripeLoadIndicator,
+      success: function success(data) {
+        console.log(data);
+        $('#services-wrapper').empty();
+        data.services.forEach(function (service) {
+          $('#services-wrapper').append("<div class=\"col-md-3 col-4 my-md-4 my-2 py-4\"><div class=\"card\">".concat(service.images_media[0] ? "<img class=\"card-img-top mt-n3 mt-n5 p-md-3\" src=\"storage/app/media".concat(service.images_media[0].image, "\" alt=\"").concat(service.images_media[0].image_title, "\">") : "", "<div class=\"card-body d-none d-md-block\"><h5 class=\"card-title\">").concat(service.name, "</h5><p class=\"card-text\">").concat(service.description, "</p>").concat(service.url ? "<a href=\"".concat(service.url, "\" class=\"btn btn-sm btn-outline-info\">Menuju Link</a>") : "", "</div></div></div>")).slideDown();
+        });
       }
     });
   });
   $("#kearsipanBtn, #perpustakaanBtn").on("click", function () {
     $("#servicesContent").css('width', '100%');
+    $("html").css("overflow", 'hidden');
   });
   $(".closeService").on("click", function () {
     $("#servicesContent").css('width', '0%');
     $("#servicesContent").css('overflow', 'hidden');
+    $("html").css("overflow-y", 'scroll');
   });
 });
 

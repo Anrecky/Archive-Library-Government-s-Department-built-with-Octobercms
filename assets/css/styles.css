@@ -19004,6 +19004,7 @@ body {
   background-color: rgba(0, 0, 0, 0.9);
   /* Black w/opacity */
   overflow-x: hidden;
+  overflow-y: scroll;
   /* Disable horizontal scroll */
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -19011,13 +19012,13 @@ body {
 }
 .services__content .card:hover .card-text {
   max-height: 500px;
-  -webkit-transition: max-height 0.75s ease-in;
-  transition: max-height 0.75s ease-in;
+  -webkit-transition: max-height 0.55s ease-in;
+  transition: max-height 0.55s ease-in;
 }
 .services__content .card .card-text {
   max-height: 0;
-  -webkit-transition: max-height 0.75s ease-out;
-  transition: max-height 0.75s ease-out;
+  -webkit-transition: max-height 0.55s ease-out;
+  transition: max-height 0.55s ease-out;
   overflow: hidden;
 }
 .services__content .close {
