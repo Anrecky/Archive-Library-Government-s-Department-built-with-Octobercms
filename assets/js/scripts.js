@@ -30906,18 +30906,25 @@ jQuery(function () {
   var successCount = 1;
   $('#loadmore').submit(function (event) {
     event.preventDefault();
-    $(this).request('onLoadPost', {
-      data: {
-        nFetch: successCount
-      },
-      loading: $.oc.stripeLoadIndicator,
-      success: function success(data) {
-        data.news.forEach(function (news) {
-          $("<div class=\"col-md-3 my-2\"><div class=\"card\" style=\"width: 100%;\"><img class=\"card-img-top\" src=\"".concat(news.featured_images[0].path, "\" alt=\"").concat(news.featured_images[0].description, "\"><div class=\"card-body\"><h5 class=\"card-title\">").concat(news.title, "</h5><p class=\"card-text\">").concat(news.excerpt, "</p></div></div></div>")).insertBefore('#loadmore').slideDown();
-        });
-        successCount++;
-      }
-    });
+
+    if (successCount <= 3) {
+      $(this).request('onLoadNews', {
+        data: {
+          nFetch: successCount
+        },
+        loading: $.oc.stripeLoadIndicator,
+        success: function success(data) {
+          console.log(data);
+          data.news.forEach(function (news) {
+            $("<div class=\"col-md-3 my-2\"><div class=\"card\" style=\"width: 100%;\"><img class=\"card-img-top\" src=\"".concat(news.featured_images[0].path, "\" alt=\"").concat(news.featured_images[0].description, "\"><div class=\"card-body\"><h5 class=\"card-title\">").concat(news.title, "</h5><p class=\"card-text\">").concat(news.excerpt, "</p></div></div></div>")).insertBefore('#loadmore').slideDown();
+          });
+          successCount++;
+        }
+      });
+    } else {
+      $('#loadmore').addClass('d-none');
+      $('#goToBerita').toggleClass('d-none d-block');
+    }
   }); // Services AJAX
 
   var serviceType = null;
