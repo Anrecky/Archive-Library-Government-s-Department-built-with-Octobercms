@@ -12,6 +12,8 @@ function onStart()
 ?>
 
 ==
+
+{% if not blogs %}
 <div id="card-slider" class="splide">
     <div class="splide__track">
         <div class="splide__list">
@@ -37,3 +39,4 @@ function onStart()
         </div>
     </div>
 </div>
+{% endif %}
