@@ -31,7 +31,9 @@ function onStart()
                         {{ blog.excerpt }}
                     </p>
                     <time class="small"><span class="fa fa-calendar"></span>&nbsp;
-                        {{ blog.published_at|date('d-m-Y, H:i:s') }} WIB</time>
+                        {{ blog.published_at|date('d-m-Y') }} WIB</time><br>
+                    <time class="small"><span class="fa fa-clock"></span>&nbsp;
+                        {{ blog.published_at|date('H:i:s') }} WIB</time>
                 </div>
             </article>
             {% endfor %}
