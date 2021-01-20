@@ -1,0 +1,40 @@
+[viewBag]
+==
+<div class="row">
+    <article class="col-md-7">
+        <h1 class="font-weight-bold h3 text-center text-white mb-4">Berita</h1>
+        <div id="news-wrapper" class="row">
+            {% for post in beritaSeries.posts %}
+            <div class="col-md-4 my-2">
+                <div class="card pb-4" style="width: 100%;">
+                    <img class="card-img-top" src="{{ post.featured_images.first.path }}"
+                        alt="{{post.featured_images.description}}">
+                    <div class="card-body">
+                        <a href="#" title="{{ post.title }}">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                        </a>
+                        <p class="card-text">{{ post.excerpt }}</p>
+                        <time class="small card-text"><span class="fa fa-calendar"></span>&nbsp;
+                            {{ blog.published_at| date('l, d F Y') }}</time><br />
+                        <time class="small card-text"><span class="fa fa-clock"></span>&nbsp;
+                            {{ blog.published_at|date('H:i:s') }} WIB</time>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <form id="loadmore" class="col-md-12 my-4">
+                <button type="submit" class="mx-auto btn btn-outline-warning">Tampilkan Lebih
+                    Banyak</button>
+            </form>
+            <div class="container-fluid">
+
+                <a href="#" id="goToBerita" class=" btn btn-outline-light my-4 d-none">Halaman Utama
+                    Berita</a>
+            </div>
+        </div>
+    </article>
+    <article class="col-md-5">
+        <h1 class="font-weight-bold h3 text-center text-white mb-4">Galeri</h1>
+        {% component 'galleryId' %}
+    </article>
+</div>
