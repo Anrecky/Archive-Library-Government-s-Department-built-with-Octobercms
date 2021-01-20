@@ -8,9 +8,10 @@ function onStart()
     $this['blogs'] = $data[0]['posts']->merge($data[1]['posts']);
     
 }
+
 ?>
+
 ==
-<<<<<<< HEAD
 
 <div id="card-slider" class="splide">
     <div class="splide__track">
@@ -39,32 +40,3 @@ function onStart()
         </div>
     </div>
 </div>
-=======
-{% if not blogs %}
-<div id="card-slider" class="splide">
-    <div class="splide__track">
-        <div class="splide__list">
-            {% for blog in blogs %}
-            <article class="splide__slide card">
-                <div class="splide__slide__container">
-                    <span class="badge badge-primary float-left p-2">{{ blog.user.first_name }}</span>
-                    <img class="card-img-top" src="{{ blog.featured_images.first.path }}"
-                        alt="{{ blog.featured_images.first.filename }}">
-                </div>
-                <div class="card-body">
-                    <a href="#">
-                        <h1 class="h5 card-title">{{ blog.title }}</h1>
-                    </a>
-                    <p class="card-text">
-                        {{ blog.excerpt }}
-                    </p>
-                    <time class="small"><span class="fa fa-calendar"></span>&nbsp;
-                        {{ blog.published_at|date('d-m-Y, H:i:s') }} WIB</time>
-                </div>
-            </article>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-{% endif %}
->>>>>>> b098bb2... okay
