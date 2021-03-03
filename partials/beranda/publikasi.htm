@@ -6,7 +6,7 @@
         <div id="news-wrapper" class="row">
             {% for post in beritaSeries.posts %}
             <div class="col-md-4 my-2">
-                <div class="card pb-4" style="width: 100%;">
+                <div class="card " style="width: 100%;">
                     <img class="card-img-top" src="{{ post.featured_images.first.path }}"
                         alt="{{post.featured_images.description}}">
                     <div class="card-body">
@@ -14,6 +14,24 @@
                             <h5 class="card-title">{{ post.title }}</h5>
                         </a>
                         <p class="card-text">{{ post.excerpt }}</p>
+                        <section>
+                            <h1 class="small">Kategori :</h1>
+                            <ul
+                                style="list-style-type: none; columns: 4;-webkit-columns: 4;-moz-columns: 4;padding-inline-start: 0%;">
+                                {% for category in post.categories %}
+                                <li>
+                                    <a href="{{ category.url }}" class="badge badge-primary ">{{ category.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <!-- <div class="d-flex my-2 flex-wrap">
+                            {% for category in post.categories %}
+                            <a href="{{ category.url }}"
+                                class="badge badge-primary {{ (loop.first and not loop.index0 % 5 == 0) ? '' : 'ml-1' }} {{ loop.index > 5 ? 'mt-1' : '' }} ">{{ category.name }}</a>
+                            {% endfor %}
+                        </div> -->
                         <time class="small card-text"><span class="fa fa-calendar"></span>&nbsp;
                             {{ blog.published_at| date('l, d F Y') }}</time><br />
                         <time class="small card-text"><span class="fa fa-clock"></span>&nbsp;
