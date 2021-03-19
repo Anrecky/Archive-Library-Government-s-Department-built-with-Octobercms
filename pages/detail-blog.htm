@@ -1,0 +1,91 @@
+title = "Blog"
+url = "/blog/:slug"
+layout = "default"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "detail-blogs"
+==
+{% set post = blogPost.post %}
+
+<article class="container mx-auto py-4">
+    <header>
+        <h1 tabindex="-1" class="font-weight-bold"> {{ post.title }}</h1>
+        <div class="row my-3">
+            <div class="col-md-4 ">
+                <em>
+                    <p class="my-0">
+                        <span class="font-weight-light ">Penulis :</span> <data value="{{post.user.first_name }}"
+                            class="font-weight-bold">{{post.user.first_name }}</data>
+                    </p>
+                    <p class="my-0"><span class="font-weight-light ">Dipublikasi :</span>
+                        <time>
+                            <strong>
+                                {{ post.published_at|date('l, d F Y') }}
+                            </strong>
+                        </time>
+                    </p>
+                </em>
+            </div>
+            <div class="col-md-4">
+                <p class="d-inline-block">Kategori</p>
+                <ul class="d-inline-block" style="padding-inline-start: 0%;list-style-type:none;">
+                    {% for category in post.categories %}
+                    <li class="mr-2 font-italic font-weight-bold d-inline">
+                        <a href="{{category.url}}">
+                            {{ category.name }}
+                        </a>
+                        {{ loop.last ? "":" ,"}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </header>
+    <!-- <section class="d-flex justify-content-between my-3 flex-wrap flex-md-nowrap">
+        <article class="my-2 position-relative border-right border-dark pr-4">
+            <p class="h6-md small mb-0 font-italic font-weight-light">Penulis: <span
+                    class=" font-italic font-weight-bold">{{
+                    post.user.first_name }}</span></p>
+            <p class="h6-md small mb-0 font-italic font-weight-light">Dipublikasi pada: <time
+                    class=" font-italic font-weight-bold">{{
+                    post.published_at|date('l, d F Y') }}</time></p>
+        </article>
+        <article class="my-2 position-relative border-right border-dark pr-4 pl-5">
+            <p class="h6-md small mb-0 font-italic font-weight-light text-capitalize">Kategori:
+                {% for category in post.categories %}
+                <span class=" font-italic font-weight-bold"><u>{{ category.name }}</u> {{ loop.last ? "":" ," }}</span>
+                {% endfor %}
+            </p>
+        </article>
+        <article class="my-2 position-relative pr-4 pl-5">
+            <p class="h6-md small mb-0 font-italic font-weight-light">Penulis: <span
+                    class=" font-italic font-weight-bold">{{
+                    post.user.first_name }}</span></p>
+            <p class="h6-md small mb-0 font-italic font-weight-light">Dipublikasi pada: <time
+                    class=" font-italic font-weight-bold">{{
+                    post.published_at|date('l, d F Y') }}</time></p>
+        </article>
+    </section> -->
+    <img class="w-100 flex-grow-1" src="{{ post.featured_images.first.path }}"
+        alt="{{post.featured_images.first.file_name}}">
+
+    <div class="content my-3">
+        {{post.content_html|raw}}
+    </div>
+    <hr class="my-4">
+    <h2 class="h5 d-inline-block" style="font-style: italic;"><u>Tags : </u></h2>
+    <ul style="padding-inline-start: 0%;" class="d-inline-block">
+        {% for tag in post.tags %}
+        <li class="d-inline-block my-2 mr-1">
+            <a href="{{tag.url}}" class="btn btn-outline-dark">
+                {{tag.name}}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</article>

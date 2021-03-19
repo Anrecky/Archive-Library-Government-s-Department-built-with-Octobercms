@@ -24,17 +24,8 @@ escKey = "true"
 height = 200
 width = 360
 resizer = "auto"
-
-[postsInSeries beritaSeries]
-series = "berita"
-orderBy = "published_at asc"
-page = "{{ :page }}"
-resultsPerPage = 4
-postPage = "home"
-categoryPage = "home"
 ==
 <?php
-use GinoPane\BlogTaxonomy\Models\Series;
 use Janvince\SmallRecords\Models\Record;
 
 function onStart()
@@ -42,75 +33,41 @@ function onStart()
 $this->page['bodyClass'] = 'home';
 
 }
-function onLoadNews()
-{
-$nFetch = (int)post('nFetch');
-$news = Series::with(['posts','posts.featured_images'])->where('slug','berita')->get()->map(function($news) use($nFetch) {
-    $news->setRelation('posts', $news->posts->sortBy('published_at')->slice(4*$nFetch,4));
-    return $news;
-});
 
-return[
-'news'=>$news[0]['posts'],
-'nFetch'=>(int)post('nFetch')
-];
-}
 function onLoadServices()
 {
     $service_type = post('serviceType');
     $services = Record::where('category_id',$service_type)->orderBy('created_at', 'desc')->get();
 return[
-'services'=>$services,
-'nFetch'=>(int)post('nFetch')
+'services'=>$services
 ];
 }
 ?>
 ==
-<div id="servicesContent" class="services__content">
-    <!-- Button to close the overlay navigation -->
-    <button type="button" class="closeService close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="container-fluid my-5">
-        <h1 class="text-white text-center mb-5 mb-md-0">Layanan</h1>
-        <div id="services-wrapper" class="row my-4">
+{% partial 'beranda/slideshow' %}
+<section class="container-fluid text-center services">
+    <h1 class="font-weight-bold h1">Layanan</h1>
+    <div class="services__wrapper row">
+        <article class="services__kearsipan col-md-6 my-2 my-md-0">
+            <a aria-label="Close" id="kearsipanBtn" href="javascript:void(0)">
+                <img src="{{ 'assets/images/service-kearsipan.png'|theme }}" class="p-5 shadow img-fluid"
+                    alt="Gambar Layanan Kearsipan">
+            </a>
+        </article>
+        <article class="services__perpustakaan col-md-6 my-2 my-md-0">
+            <a aria-label="Close" id="perpustakaanBtn" href="javascript:void(0)">
+                <img src="{{ 'assets/images/service-perpustakaan.png'|theme }}" class="p-5 shadow img-fluid"
+                    alt="Gambar Layanan Perpustakaan">
+            </a>
+        </article>
+    </div>
+</section>
+<section class="container-fluid text-center events">
+    <h1 class="font-weight-bold h1">Event</h1>
+    {% partial 'beranda/event' %}
+</section>
 
-        </div>
-    </div>
-</div>
-<main class="main-content">
-    {% partial 'beranda/slideshow' %}
-    <div class="wrapper-bg">
-        <section class="container-fluid text-center services">
-            <h1 class="font-weight-bold h1">Layanan</h1>
-            <div class="services__wrapper row">
-                <article class="services__kearsipan col-md-6 my-2 my-md-0">
-                    <a aria-label="Close" id="kearsipanBtn" href="javascript:void(0)">
-                        <img src="{{ 'assets/images/service-kearsipan.png'|theme }}" class="p-5 shadow img-fluid"
-                            alt="Gambar Layanan Kearsipan">
-                    </a>
-                </article>
-                <article class="services__perpustakaan col-md-6 my-2 my-md-0">
-                    <a aria-label="Close" id="perpustakaanBtn" href="javascript:void(0)">
-                        <img src="{{ 'assets/images/service-perpustakaan.png'|theme }}" class="p-5 shadow img-fluid"
-                            alt="Gambar Layanan Perpustakaan">
-                    </a>
-                </article>
-            </div>
-        </section>
-        <section class="container-fluid text-center events">
-            <h1 class="font-weight-bold h1">Event</h1>
-            {% partial 'beranda/event' %}
-        </section>
-        <section class="container-fluid  publikasi pb-4">
-            <h1 class="font-weight-bold text-center h1">Publikasi</h1>
-            {% partial 'beranda/publikasi' %}
-        </section>
-        <section class="container-fluid text-center blogs pb-4">
-            <h1 class="font-weight-bold h1">Blog</h1>
-            {% partial 'beranda/blog' %}
-        </section>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-       
-    </div>
-</main>
+<section class="container text-center blogs pb-4">
+    <h1 class="font-weight-bold h1">Blog</h1>
+    {% partial 'beranda/blog' %}
+</section>

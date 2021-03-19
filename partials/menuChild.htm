@@ -1,0 +1,15 @@
+;;
+[viewBag]
+==
+{##}
+
+<ul class="submenu dropdown-menu">
+    {% for child in childs %}
+    <li>
+        <a class="dropdown-item" href="{{ child.url }}">{{ child.title }} {{ child.items ? " &raquo" : "" }}</a>
+        {% if child.items %}
+        {% partial 'menuChild' childs=child.items %}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

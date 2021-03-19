@@ -39,16 +39,35 @@ function onInit()
 </head>
 
 <body class="{{ this.page.bodyClass }}">
+
+    <article id="servicesContent" class="services__content">
+        <!-- Button to close the overlay navigation -->
+        <button type="button" class="closeService close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="container-fluid my-5">
+            <h1 class="text-white text-center mb-5 mb-md-0">Layanan</h1>
+            <div id="services-wrapper" class="row my-4">
+
+            </div>
+        </div>
+    </article>
+
     <div class="preloader__wrapper">
         <div class="preloader"></div>
     </div>
-    <div id="js--webapp">
 
-        {% partial 'nav' %}
+    <div class="d-flex flex-column justify-content-between" id="js--webapp">
 
-        {% page %}
+        {% partial 'header' %}
 
-        {% partial 'footer' %}
+        <main class="main-content flex-grow-1 {% if this.page.id == 'home' %}  {% else %} bg-white {% endif %}">
+            {% page %}
+        </main>
+
+        <div class="flex-shrink-0">
+            {% partial 'footer' %}
+        </div>
 
 
     </div>
@@ -59,9 +78,6 @@ function onInit()
 
     {% scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js"></script>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v9.0"
-        nonce="sJE6E7VM"></script>
 </body>
 
 </html>

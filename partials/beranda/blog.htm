@@ -1,41 +1,43 @@
 [viewBag]
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "detail-blog"
+postPage = "detail-blog"
 ==
-<?php
-use GinoPane\BlogTaxonomy\Models\Series;
-function onStart()
-{
-    $data = Series::with(['posts','posts.featured_images','posts.series','posts.user'])->where('slug','artikel')->orWhere('slug','opini')->get();
-    $this['blogs'] = $data[0]['posts']->merge($data[1]['posts']);
-    
-}
-
-?>
-
-==
-
-<div id="card-slider" class="splide">
-    <div class="splide__track">
-        <div class="splide__list">
-            {% for blog in blogs %}
-            <article class="splide__slide card">
-                <div class="splide__slide__container">
-                    <span class="badge badge-primary float-left p-2">{{ blog.user.first_name }}</span>
-                    <img class="card-img-top" src="{{ blog.featured_images.first.path }}"
-                        alt="{{ blog.featured_images.first.filename }}">
-                </div>
-                <div class="card-body">
-                    <a href="#">
-                        <h1 class="h5 card-title font-weight-bold">{{ blog.title }}</h1>
+{% set posts = blogPosts.posts %}
+{% set first_post = blogPosts.posts.first %}
+<div class="row">
+    <article style="height: 100%;" class="card bg-dark text-white col-md-7 p-0 shadow border-0 ">
+        <img class="card-img" src="{{first_post.featured_images.first.path}}"
+            alt="{{first_post.featured_images.first.filename}}">
+        <div class="card-img-overlay text-left border-0 blog-card">
+            <h1 class="card-title h5 font-weight-bold">
+                <a class="btn-outline-light" href="{{first_post.url}}">
+                    {{first_post.title}}
+                </a>
+            </h1>
+            <p class="card-text">{{ str_limit(first_post.excerpt,250) }}</p>
+            <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+    </article>
+    <div class="col-md-5">
+        <div class="row text-left">
+            {% for post in posts %}
+            {% if not loop.first %}
+            <div class="col-md-5 card m-1 p-2 shadow">
+                <h1 style="font-size: .825rem;" class="my-1 font-weight-bold">
+                    <a href="{{post.url}}">
+                        {{ post.title }}
                     </a>
-                    <p class="card-text">
-                        {{ blog.excerpt }}
-                    </p>
-                    <time class="small"><span class="fa fa-calendar"></span>&nbsp;
-                        {{ blog.published_at|date('d-m-Y') }} WIB</time><br>
-                    <time class="small"><span class="fa fa-clock"></span>&nbsp;
-                        {{ blog.published_at|date('H:i:s') }} WIB</time>
-                </div>
-            </article>
+                </h1>
+                <p style="font-size: .625rem;margin-bottom: auto;" class="my-1">{{str_limit(first_post.excerpt,250)}}
+                </p>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

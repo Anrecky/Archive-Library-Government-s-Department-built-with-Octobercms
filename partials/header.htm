@@ -1,0 +1,53 @@
+;;
+[viewBag]
+
+[staticMenu]
+code = "main-menu"
+==
+{##}
+{% set menus = staticMenu.menuItems %}
+
+<header
+    style="z-index:3;background:transparent;{% if this.page.id == 'home' %}margin-bottom:-3.6rem; {% else %} background:#001f46; {% endif %}"
+    class="flex-shrink-0 {% if this.page.id == 'home' %} {% else %} py-4 {% endif %}">
+    <nav class="navbar navbar-expand-lg navbar-dark container">
+        <a class="navbar-brand font-weight-bold" title="Dinas Kearsipan dan Perpustakaan Kab. Bangka"
+            href="{{ 'home'|page }}">ARPUSDA</a>
+        <button class="navbar-toggler" type="button" data-trigger="#mainNavigation" aria-controls="mainNavigation"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse" id="mainNavigation">
+            <article class="offcanvas-header mt-3">
+                <h1 class="h5 py-2 text-white">ARPUSDA</h1>
+                <button class="btn btn-outline-danger btn-close float-right"> &times Tutup </button>
+            </article>
+            <ul class="navbar-nav mr-auto">
+                {% for menu in menus %}
+                <li class="nav-item {{ menu.items ? 'dropdown':'' }}">
+                    <a class="nav-link {{ menu.items ? 'dropdown-toggle':'' }}" {% if menu.items %}
+                        data-toggle="dropdown" {% endif %} href="{{menu.url}}">{{menu.title}}</a>
+                    {% if menu.items %}
+                    <ul class="dropdown-menu">
+                        {% for submenu in menu.items %}
+                        <li>
+                            <a class="dropdown-item" href="{{ submenu.url }}">{{ submenu.title }}
+                                {{ submenu.items ? " &raquo" : "" }}</a>
+                            {% if submenu.items %}
+                            {% partial 'menuChild' childs=submenu.items %}
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
