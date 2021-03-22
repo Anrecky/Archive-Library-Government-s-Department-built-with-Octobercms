@@ -16,12 +16,15 @@ postPage = "detail-blog"
             alt="{{first_post.featured_images.first.filename}}">
         <div class="card-img-overlay text-left border-0 blog-card">
             <h1 class="card-title h5 font-weight-bold">
-                <a class="btn-outline-light" href="{{first_post.url}}">
+                <a class="btn-outline-light" href="{{ first_post.series.title|lowercase }}/{{first_post.slug}}">
                     {{first_post.title}}
                 </a>
             </h1>
             <p class="card-text">{{ str_limit(first_post.excerpt,250) }}</p>
-            <p class="card-text">Last updated 3 mins ago</p>
+            <time class="card-text" datetime="{{ first_post.published_at|date('Y-m-d H:i:s') }}"><i
+                    class="fa fa-calendar mr-2" aria-hidden="true"></i>{{ first_post.published_at|date('l, d F
+                Y')
+                }}</time>
         </div>
     </article>
     <div class="col-md-5">
@@ -30,12 +33,17 @@ postPage = "detail-blog"
             {% if not loop.first %}
             <div class="col-md-5 card m-1 p-2 shadow">
                 <h1 style="font-size: .825rem;" class="my-1 font-weight-bold">
-                    <a href="{{post.url}}">
+                    <a href="{{ post.series.title|lowercase }}/{{post.slug}}">
                         {{ post.title }}
                     </a>
                 </h1>
                 <p style="font-size: .625rem;margin-bottom: auto;" class="my-1">{{str_limit(first_post.excerpt,250)}}
                 </p>
+                <time style="font-size: .625rem;" class="card-text"
+                    datetime="{{ post.published_at|date('Y-m-d H:i:s') }}"><i class="fa fa-calendar mr-2"
+                        aria-hidden="true"></i>{{ post.published_at|date('l, d F
+                    Y')
+                    }}</time>
             </div>
             {% endif %}
             {% endfor %}

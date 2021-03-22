@@ -1,0 +1,66 @@
+[SeoCmsPage]
+==
+<?php
+function onInit()
+{
+    $themePath = 'themes/' . $this->theme->getDirName();
+    $this->layout['styles'] = url(mix('assets/css/styles.css', $themePath));
+    $this->layout['scripts'] = url(mix('assets/js/scripts.js', $themePath));
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ARPUSDA">
+    <meta name="generator" content="ARPUSDA">
+
+    <title>{{ this.page.title }} - Dinas Kearsipan dan Perpustakaan Daerah</title>
+
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="description" content="{{ this.page.meta_description }}">
+    {% component 'SeoCmsPage' %}
+    <link rel="shortcut icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
+    <link rel="icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
+
+    <link href="{{ this.layout.styles }}" rel="stylesheet">
+    {% styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body class="{{ this.page.bodyClass }}">
+
+
+    <div class="preloader__wrapper">
+        <div class="preloader"></div>
+    </div>
+
+    <div class="d-flex flex-column justify-content-between" id="js--webapp">
+
+        {% partial 'header' %}
+
+        <main class="main-content flex-grow-1 {% if this.page.id == 'home' %}  {% else %} bg-white {% endif %}">
+            {% page %}
+        </main>
+
+        <div class="flex-shrink-0">
+            {% partial 'footer' %}
+        </div>
+
+
+    </div>
+
+    <script src="{{ this.layout.scripts }}"></script>
+
+    {% framework extras %}
+
+    {% scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js"></script>
+</body>
+
+</html>

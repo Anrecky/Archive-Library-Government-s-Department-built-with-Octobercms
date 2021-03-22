@@ -1,14 +1,36 @@
 title = "Blog"
-url = "/blog/:slug"
-layout = "default"
+url = "/:series/:slug"
+layout = "dynamic"
 is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
 
 [blogPost]
 slug = "{{ :slug }}"
 categoryPage = "detail-blogs"
+
+[ShareButtons]
+css = 1
+skin = "color"
+fb = 1
+tw = 1
+in = 1
+tg = 1
+vb = 0
+wa = 1
+
+[SeoBlogPost]
+post = "post"
+==
+<?php
+function onStart()
+{
+    $this['series'] = 'berita';
+}
+?>
 ==
 {% set post = blogPost.post %}
-
+{% component 'SeoBlogPost' data=post %}
 <article class="container mx-auto py-4">
     <header>
         <h1 tabindex="-1" class="font-weight-bold"> {{ post.title }}</h1>
@@ -20,7 +42,7 @@ categoryPage = "detail-blogs"
                             class="font-weight-bold">{{post.user.first_name }}</data>
                     </p>
                     <p class="my-0"><span class="font-weight-light ">Dipublikasi :</span>
-                        <time>
+                        <time datetime="{{ post.published_at|date('Y-m-d H:i:s') }}">
                             <strong>
                                 {{ post.published_at|date('l, d F Y') }}
                             </strong>
@@ -29,7 +51,7 @@ categoryPage = "detail-blogs"
                 </em>
             </div>
             <div class="col-md-4">
-                <p class="d-inline-block">Kategori</p>
+                <p class="d-inline-block my-0 font-weight-light"><em>Kategori</em> :</p>
                 <ul class="d-inline-block" style="padding-inline-start: 0%;list-style-type:none;">
                     {% for category in post.categories %}
                     <li class="mr-2 font-italic font-weight-bold d-inline">
@@ -42,35 +64,11 @@ categoryPage = "detail-blogs"
                 </ul>
             </div>
             <div class="col-md-4">
-
+{% component 'ShareButtons' %}
             </div>
         </div>
     </header>
-    <!-- <section class="d-flex justify-content-between my-3 flex-wrap flex-md-nowrap">
-        <article class="my-2 position-relative border-right border-dark pr-4">
-            <p class="h6-md small mb-0 font-italic font-weight-light">Penulis: <span
-                    class=" font-italic font-weight-bold">{{
-                    post.user.first_name }}</span></p>
-            <p class="h6-md small mb-0 font-italic font-weight-light">Dipublikasi pada: <time
-                    class=" font-italic font-weight-bold">{{
-                    post.published_at|date('l, d F Y') }}</time></p>
-        </article>
-        <article class="my-2 position-relative border-right border-dark pr-4 pl-5">
-            <p class="h6-md small mb-0 font-italic font-weight-light text-capitalize">Kategori:
-                {% for category in post.categories %}
-                <span class=" font-italic font-weight-bold"><u>{{ category.name }}</u> {{ loop.last ? "":" ," }}</span>
-                {% endfor %}
-            </p>
-        </article>
-        <article class="my-2 position-relative pr-4 pl-5">
-            <p class="h6-md small mb-0 font-italic font-weight-light">Penulis: <span
-                    class=" font-italic font-weight-bold">{{
-                    post.user.first_name }}</span></p>
-            <p class="h6-md small mb-0 font-italic font-weight-light">Dipublikasi pada: <time
-                    class=" font-italic font-weight-bold">{{
-                    post.published_at|date('l, d F Y') }}</time></p>
-        </article>
-    </section> -->
+
     <img class="w-100 flex-grow-1" src="{{ post.featured_images.first.path }}"
         alt="{{post.featured_images.first.file_name}}">
 
