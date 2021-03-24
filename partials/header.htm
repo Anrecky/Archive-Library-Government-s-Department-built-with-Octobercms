@@ -10,7 +10,7 @@ code = "main-menu"
 <header
     style="z-index:3;background:transparent;{% if this.page.id == 'home' %}margin-bottom:-3.6rem; {% else %} background:#001f46; {% endif %}"
     class="flex-shrink-0 {% if this.page.id == 'home' %} {% else %} py-4 {% endif %}">
-    <nav class="navbar navbar-expand-lg navbar-dark container">
+    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
         <a class="navbar-brand font-weight-bold" title="Dinas Kearsipan dan Perpustakaan Kab. Bangka"
             href="{{ 'home'|page }}">ARPUSDA</a>
         <button class="navbar-toggler" type="button" data-trigger="#mainNavigation" aria-controls="mainNavigation"
@@ -19,10 +19,10 @@ code = "main-menu"
         </button>
 
         <div class="navbar-collapse" id="mainNavigation">
-            <article class="offcanvas-header mt-3">
-                <h1 class="h5 py-2 text-white">ARPUSDA</h1>
+            <div class="offcanvas-header mt-3">
+                <h1 class="h5 py-2 text-white font-weight-bold">ARPUSDA</h1>
                 <button class="btn btn-outline-danger btn-close float-right"> &times Tutup </button>
-            </article>
+            </div>
             <ul class="navbar-nav mr-auto">
                 {% for menu in menus %}
                 <li class="nav-item {{ menu.items ? 'dropdown':'' }}">
