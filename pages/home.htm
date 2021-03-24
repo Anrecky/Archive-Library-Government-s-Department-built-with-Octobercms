@@ -37,13 +37,16 @@ $this->page['bodyClass'] = 'home';
 function onLoadServices()
 {
     $service_type = post('serviceType');
-    $services = Record::where('category_id',$service_type)->orderBy('created_at', 'desc')->get();
+
+    $services = Record::whereHas('category', function($q) use ($service_type){ $q->where('slug',$service_type); })->orderBy('created_at', 'desc')->get();
+
 return[
 'services'=>$services
 ];
 }
 ?>
 ==
+
 {% partial 'beranda/slideshow' %}
 <section class="container-fluid text-center services">
     <h1 class="font-weight-bold h1">Layanan</h1>
