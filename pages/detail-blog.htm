@@ -107,14 +107,14 @@ function onStart()
     <section>
         <h1 class="h5 d-inline-block" style="font-style: italic;"><u>Terkait</u>:</h1>
         <div class="d-flex">
-            {% for post in relatedPosts.posts %}
+            {% for related in relatedPosts.posts %}
             <article class="p-3 {% if loop.first %} mr-1 {% else %} mx-1 {% endif %}"
                 style="background-color: #001F46;">
                 <h1 class="h5 ">
-                    <a class="text-white" href="{{ post.url }}">{{ post.title }}</a>
+                    <a class="text-white" href="{{ post.url }}">{{ related.title }}</a>
                 </h1>
                 <time style="color: rgba(255, 255, 255, 0.748);" datetime="{{ post.published_at|date('d-m-Y') }}">{{
-                    post.published_at|date('l,
+                    related.published_at|date('l,
                     d F Y') }}</time>
             </article>
             {% endfor %}
