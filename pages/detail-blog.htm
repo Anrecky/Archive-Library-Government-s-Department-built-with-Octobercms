@@ -106,10 +106,10 @@ function onStart()
     {% if relatedPosts.posts | length %}
     <section>
         <h1 class="h5 d-inline-block" style="font-style: italic;"><u>Terkait</u>:</h1>
-        <div class="d-flex">
+        <div class="d-flex ">
             {% for related in relatedPosts.posts %}
-            <article class="p-3 {% if loop.first %} mr-1 {% else %} mx-1 {% endif %}"
-                style="background-color: #001F46;">
+            <article class="p-3 {% if loop.first %} mr-2 {% else %} mx-2 {% endif %}"
+                style="background-color: #001F46;width: 29%;">
                 <h1 class="h5 ">
                     <a class="text-white" href="{{ post.url }}">{{ related.title }}</a>
                 </h1>
