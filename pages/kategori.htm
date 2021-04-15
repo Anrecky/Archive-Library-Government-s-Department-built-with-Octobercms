@@ -38,7 +38,7 @@ postPage = "detail-blog"
                 {% endif %}
             </p>
 
-            <p class="card-text">{{str_limit(post.summary|raw)}}</p>
+            <p class="card-text">{{post.summary|raw}}</p>
         </div>
     </article>
     {% else %}
