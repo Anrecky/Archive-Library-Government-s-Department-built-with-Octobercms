@@ -7,17 +7,7 @@ robot_follow = "follow"
 
 [blogPost]
 slug = "{{ :slug }}"
-categoryPage = "detail-blogs"
-
-[ShareButtons]
-css = 1
-skin = "color"
-fb = 1
-tw = 1
-in = 1
-tg = 1
-vb = 0
-wa = 1
+categoryPage = "kategori"
 
 [SeoBlogPost]
 post = "post"
@@ -40,8 +30,8 @@ function onStart()
 <article class="container mx-auto py-4">
     <header>
         <h1 tabindex="-1" class="font-weight-bold"> {{ post.title }}</h1>
-        <div class="row my-3">
-            <div class="col-md-4 ">
+        <div class="d-flex my-3 justify-content-between flex-wrap">
+            <div class="col-md-6 my-2 my-md-0 ">
                 <em>
                     <p class="my-0">
                         <span class="font-weight-light ">Penulis :</span> <data value="{{post.user.first_name }}"
@@ -56,12 +46,13 @@ function onStart()
                     </p>
                 </em>
             </div>
-            <div class="col-md-4">
-                <p class="d-inline-block my-0 font-weight-light"><em>Kategori</em> :</p>
-                <ul class="d-inline-block" style="padding-inline-start: 0%;list-style-type:none;">
+            <div class="col-md-6 my-2 my-md-0">
+                <p class="d-inline my-0 font-weight-light"><em>Kategori</em> :</p>
+                <ul class="d-inline" style="padding-inline-start: 0%;list-style-type:none;">
                     {% for category in post.categories %}
                     <li class="mr-2 font-italic font-weight-bold d-inline">
-                        <a href="{{category.url}}">
+
+                        <a href="{{'kategori'|page}}/{{category.slug}}">
                             {{ category.name }}
                         </a>
                         {{ loop.last ? "":" ,"}}
@@ -69,21 +60,18 @@ function onStart()
                     {% endfor %}
                 </ul>
             </div>
-            <div class="col-md-4">
-                {% component 'ShareButtons' %}
-            </div>
         </div>
     </header>
 
     <img class="w-100 flex-grow-1" src="{{ post.featured_images.first.path }}"
         alt="{{post.featured_images.first.file_name}}">
 
-    <div class="content my-3">
+    <div class="content my-4">
         {{post.content_html|raw}}
     </div>
-    <hr class="my-4">
-    <p class="h5 d-inline-block" style="font-style: italic;"><u>Tags</u>:&nbsp;</p>
-    <ul style="padding-inline-start: 0%;" class="d-inline-block">
+
+    <p class="h5" style="font-style: italic;"><u>Tags</u>:&nbsp;</p>
+    <ul style="padding-inline-start: 0%;">
         {% for tag in post.tags %}
         <li class="d-inline-block my-2 mr-1">
             <a href="{{tag.url}}" class="btn btn-outline-dark">
@@ -92,20 +80,10 @@ function onStart()
         </li>
         {% endfor %}
     </ul>
-    <br>
-    <p class="h5 d-inline-block" style="font-style: italic;"><u>Bagikan</u>:</p>
-    <span class="sharefake"></span>
-    {% for key in share|keys %}
-    {% if ShareButtons.property(key) %}
-    <span class="share-{{ key }}" title="{{ ('webvpf.share::lang.buttons.' ~ key ~ '.name')|trans }}">
-        {% partial ShareButtons ~ '::' ~ key %}
-    </span>
-    {% endif %}
-    {% endfor %}
-    <hr class="my-4">
+
     {% if relatedPosts.posts | length %}
     <section>
-        <h1 class="h5 d-inline-block" style="font-style: italic;"><u>Terkait</u>:</h1>
+        <h1 class="h5" style="font-style: italic;"><u>Terkait</u>:</h1>
         <div class="d-flex ">
             {% for related in relatedPosts.posts %}
             <article class="p-3 {% if loop.first %} mr-2 {% else %} mx-2 {% endif %}"
