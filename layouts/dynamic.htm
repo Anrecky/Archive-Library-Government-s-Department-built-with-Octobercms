@@ -19,7 +19,9 @@ function onInit()
 
     <link rel="shortcut icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
     <link rel="icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
-
+    <title>{% if post.title %} {{post.title}} {% else %}{{ this.page.title }} {% endif %} | Dinas Kearsipan dan
+        Perpustakaan Daerah</title>
+    <meta name="title" content="{{ this.page.meta_title }}">
     <link href="{{ this.layout.styles }}" rel="stylesheet">
     {% styles %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">
