@@ -25,7 +25,7 @@ function onInit()
 
     {% if post %}
     <meta property="og:title" content="{{ post.title }}">
-    <meta property="og:description" content="{{ str_limit(post.excerpt,250) }}" />
+    <meta property="og:description" content="{{ str_limit(post.excerpt,550) }}" />
     <meta property="og:type" content="{% if post %}article{% else %}website{% endif %}">
     <meta property="og:url" content="{{ this.page.id | page }}">
     {% if post.featured_images.first %}
