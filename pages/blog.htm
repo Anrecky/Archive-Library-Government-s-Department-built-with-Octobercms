@@ -1,0 +1,78 @@
+title = "Blog"
+url = "/blog"
+layout = "default"
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog"
+postPage = "blog"
+
+[popularPosts]
+category = "{{ :category }}"
+postsLimit = 3
+noPostsMessage = "No posts found"
+postPage = "blog"
+==
+{% set posts = blogPosts.posts %}
+
+<section class="container-fluid">
+    <h1 class="text-uppercase font-weight-bold my-2 display-md-1 display-4"> {{ this.param.category }}</h1>
+    <div class="row">
+        <div class="col-md-7">
+            {% for post in posts %}
+            <article class="my-4 shadow-sm card w-100">
+                <!-- <img class="card-img-top" src="{{ post.featured_images.first.path }}"
+                    alt="{{post.featured_images.first.file_name}}"> -->
+                <div class="card-body">
+                    <h3 class="card-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+
+                    <p class="card-text">
+                        {% if post.categories.count %}
+                        {% set categoryLinks = post.categories | map(c => "<a
+                            href=\"/kategori/#{c.slug}\">#{c.name}</a>") |
+                        join(',') %}
+                        {{ 'rainlab.blog::lang.post.posted_byline' | trans({date: post.published_at |
+                        date('rainlab.blog::lang.post.date_format' | trans), categories: categoryLinks }) }}
+                        {% else %}
+                        {{ 'rainlab.blog::lang.post.posted_byline_no_categories' | trans({ date: post.published_at |
+                        date('rainlab.blog::lang.post.date_format' | trans)}) }}
+                        {% endif %}
+                    </p>
+
+                    <p class="card-text">{{ str_limit(post.summary|raw , 350) }}</p>
+                </div>
+            </article>
+            {% else %}
+            <article class="no-data">{{ blogPosts.noPostsMessage }}</article>
+            {% endfor %}
+        </div>
+        <div class="col-md-5 my-4">
+         {% component 'popularPosts' %}
+        </div>
+    </div>
+
+</section>
+
+{% if posts.lastPage > 1 %}
+<ul class="pagination">
+    {% if posts.currentPage > 1 %}
+    <li><a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}">&larr; Prev</a>
+    </li>
+    {% endif %}
+
+    {% for page in 1..posts.lastPage %}
+    <li class="{{ posts.currentPage == page ? 'active' : null }}">
+        <a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): page }) }}">{{ page }}</a>
+    </li>
+    {% endfor %}
+
+    {% if posts.lastPage > posts.currentPage %}
+    <li><a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}">Next &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}

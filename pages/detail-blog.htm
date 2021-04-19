@@ -1,6 +1,6 @@
-title = "Blog"
+title = "Post"
 url = "/:series/:slug"
-layout = "dynamic"
+layout = "default"
 is_hidden = 0
 
 [blogPost]
@@ -12,6 +12,9 @@ slug = "{{ :slug }}"
 limit = 3
 orderBy = "published_at asc"
 postPage = "detail-blog"
+
+[views]
+slug = "{{ :slug }}"
 ==
 <?php
 function onStart()
@@ -21,7 +24,6 @@ function onStart()
 ?>
 ==
 {% set post = blogPost.post %}
-{% component 'SeoBlogPost' data=post %}
 <article class="container mx-auto py-4">
     <header>
         <h1 tabindex="-1" class="font-weight-bold"> {{ post.title }}</h1>
@@ -58,8 +60,10 @@ function onStart()
         </div>
     </header>
 
+    {% if post.featured_images.first %}
     <img class="w-100 flex-grow-1" src="{{ post.featured_images.first.path }}"
         alt="{{post.featured_images.first.file_name}}">
+    {% endif %}
 
     <div class="content my-4">
         {{post.content_html|raw}}

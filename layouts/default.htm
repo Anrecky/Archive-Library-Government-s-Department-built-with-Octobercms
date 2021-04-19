@@ -12,18 +12,29 @@ function onInit()
 <html lang="id">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="ARPUSDA">
-    <meta name="generator" content="ARPUSDA">
+    <title>{% if post.title %}{{ post.title }} {% else %}{{ this.page.title }} {% endif %} | Dinas Kearsipan dan
+        Perpustakaan Daerah</title>
+    <meta name="title" content="{% if post.title %} {{ post.title }} {% else %} {{ this.page.meta_title }} {% endif %}">
+    <meta name="description"
+        content="{% if post.excerpt %}{{ str_limit(post.excerpt,250) }} {% else %}{{ this.page.meta_description }} {% endif %}">
 
     <link rel="shortcut icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
     <link rel="icon" href="{{ 'assets/images/favicon.png'|theme }}" type="image/png">
 
-    <title>{{ this.page.title }} - Dinas Kearsipan dan Perpustakaan Daerah</title>
-
-    <meta name="title" content="{{ this.page.meta_title }}">
-    <meta name="description" content="{{ this.page.meta_description }}">
+    {% if post %}
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:description" content="{{ str_limit(post.excerpt,250) }}" />
+    <meta property="og:type" content="{% if post %}article{% else %}website{% endif %}">
+    <meta property="og:url" content="{{ this.page.id | page }}">
+    {% if post.featured_images.first %}
+    <meta property="og:image" content="{{ post.featured_images.first.path }}">
+    {% endif %}
+    <meta name="robots" content="index, follow">
+    {% else %}
+    <meta name="robots" content="noindex, follow">
+    {% endif %}
 
     <link href="{{ this.layout.styles }}" rel="stylesheet">
     {% styles %}
@@ -36,14 +47,12 @@ function onInit()
 
     <article id="servicesContent" class="services__content">
         <!-- Button to close the overlay navigation -->
-        <button type="button" class="closeService close" aria-label="Close">
+        <button type="button" class="closeService close" aria-label="Tutup">
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="container-fluid my-5">
             <h1 class="text-white text-center mb-5 mb-md-0">Layanan</h1>
-            <div id="services-wrapper" class="row my-4">
-
-            </div>
+            <div id="services-wrapper" class="row my-4"></div>
         </div>
     </article>
 
