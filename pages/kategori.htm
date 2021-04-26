@@ -23,19 +23,34 @@ postPage = "detail-blog"
         <div class="card-body">
             <h3 class="card-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
 
-            <p class="card-text">
-                {% if post.categories.count %}
-                {% set categoryLinks = post.categories | map(c => "<a href=\"/kategori/#{c.slug}\">#{c.name}</a>") |
-                join(',') %}
-                {{ 'rainlab.blog::lang.post.posted_byline' | trans({date: post.published_at |
-                date('rainlab.blog::lang.post.date_format' | trans), categories: categoryLinks }) }}
-                {% else %}
-                {{ 'rainlab.blog::lang.post.posted_byline_no_categories' | trans({ date: post.published_at |
-                date('rainlab.blog::lang.post.date_format' | trans)}) }}
-                {% endif %}
-            </p>
+            {% if post.categories.count %}
+            <div class="card-text">
+                <p class="my-0"><span class="font-weight-light ">Dipublikasi :</span>
+                    <time datetime="{{ post.published_at|date('Y-m-d H:i:s') }}">
+                        <strong>
+                            {{ post.published_at|date('l, d F Y') }}
+                        </strong>
+                    </time>
+                </p>
+                <p class="d-inline my-0 font-weight-light">Kategori :</p>
+                <ul class="d-inline" style="padding-inline-start: 0%;list-style-type:none;">
+                    {% for category in post.categories %}
+                    <li class="mr-2 font-weight-bold d-inline">
 
-            <p class="card-text">{{ str_limit(post.summary|raw , 350) }}</p>
+                        <a href="{{'kategori'|page}}/{{category.slug}}">
+                            {{ category.name }}
+                        </a>
+                        {{ loop.last ? "":" ,"}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% else %}
+            {{ 'rainlab.blog::lang.post.posted_byline_no_categories' | trans({ date: post.published_at |
+            date('rainlab.blog::lang.post.date_format' | trans)}) }}
+            {% endif %}
+
+            <p class="card-text my-2">{{ str_limit(post.summary|raw , 350) }}</p>
         </div>
     </article>
     {% else %}
