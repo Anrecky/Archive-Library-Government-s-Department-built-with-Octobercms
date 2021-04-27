@@ -32,12 +32,12 @@ postPage = "detail-blog"
                         </strong>
                     </time>
                 </p>
-                <p class="d-inline my-0 font-weight-light">Kategori :</p>
+                <p class="d-inline my-0 font-weight-light"><em>Kategori</em> :</p>
                 <ul class="d-inline" style="padding-inline-start: 0%;list-style-type:none;">
                     {% for category in post.categories %}
                     <li class="mr-2 font-weight-bold d-inline">
 
-                        <a href="{{'kategori'|page}}/{{category.slug}}">
+                        <a href="{{'kategori'|page({category:category.slug})}}">
                             {{ category.name }}
                         </a>
                         {{ loop.last ? "":" ,"}}
@@ -50,7 +50,7 @@ postPage = "detail-blog"
             date('rainlab.blog::lang.post.date_format' | trans)}) }}
             {% endif %}
 
-            <p class="card-text my-2">{{ str_limit(post.summary|raw , 350) }}</p>
+            <p class="card-text">{{ str_limit(post.summary|raw , 350) }}</p>
         </div>
     </article>
     {% else %}
