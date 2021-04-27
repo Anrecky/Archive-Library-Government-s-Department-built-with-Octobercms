@@ -1,11 +1,11 @@
 title = "Blog"
-url = "/blog"
+url = "/blog/:page?1"
 layout = "default"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
-postsPerPage = 10
+postsPerPage = 2
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 categoryPage = "blog"
