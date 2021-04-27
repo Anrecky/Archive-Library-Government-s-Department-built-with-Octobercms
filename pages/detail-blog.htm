@@ -49,7 +49,7 @@ function onStart()
                     {% for category in post.categories %}
                     <li class="mr-2 font-italic font-weight-bold d-inline">
 
-                        <a href="{{'kategori'|page}}/{{category.slug}}">
+                        <a href="{{'kategori'|page({category:category.slug})}}">
                             {{ category.name }}
                         </a>
                         {{ loop.last ? "":" ,"}}
