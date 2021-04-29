@@ -1,12 +1,12 @@
 title = "Kategori"
-url = "/kategori/:category?"
+url = "/kategori/:category?/:page?"
 layout = "default"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "{{ :category }}"
-postsPerPage = 1
+postsPerPage = 10
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 categoryPage = "kategori"
