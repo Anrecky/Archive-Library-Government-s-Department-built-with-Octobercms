@@ -6,7 +6,7 @@ is_hidden = 0
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "{{ :category }}"
-postsPerPage = 10
+postsPerPage = 1
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 categoryPage = "kategori"
@@ -58,22 +58,31 @@ postPage = "detail-blog"
     {% endfor %}
 </section>
 
-{% if posts.lastPage > 1 %}
-<ul class="pagination">
-    {% if posts.currentPage > 1 %}
-    <li><a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}">&larr; Prev</a>
-    </li>
-    {% endif %}
+<div class="container-fluid">
+    {% if posts.lastPage > 1 %}
+    <nav aria-label="Blog Page Navigation">
+        <ul class="pagination pagination-lg justify-content-center">
+            {% if posts.currentPage > 1 %}
+            <li class="page-item"><a class="page-link"
+                    href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}">&larr;
+                    Sebelumnya</a>
+            </li>
+            {% endif %}
 
-    {% for page in 1..posts.lastPage %}
-    <li class="{{ posts.currentPage == page ? 'active' : null }}">
-        <a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): page }) }}">{{ page }}</a>
-    </li>
-    {% endfor %}
+            {% for page in 1..posts.lastPage %}
+            <li class="page-item {{ page == this.param.page ? 'active' : null }}">
+                <a class="page-link" href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): page }) }}">{{ page
+                    }}</a>
+            </li>
+            {% endfor %}
 
-    {% if posts.lastPage > posts.currentPage %}
-    <li><a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}">Next &rarr;</a>
-    </li>
+            {% if posts.lastPage > posts.currentPage %}
+            <li class="page-item"><a class="page-link"
+                    href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}">Selanjutnya
+                    &rarr;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
     {% endif %}
-</ul>
-{% endif %}
+</div>
