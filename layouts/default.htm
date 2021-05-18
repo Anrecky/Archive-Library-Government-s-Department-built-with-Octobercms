@@ -14,8 +14,8 @@ function onInit()
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if post.title %}{{ post.title }} {% else %}{{ this.page.title }} {% endif %} | Dinas Kearsipan dan
-        Perpustakaan Daerah</title>
+    <title>{% if post.title %}{{ post.title }} {% else %}{{ this.page.title }} {% endif %} | {{ this.theme.site_name }}
+    </title>
     <meta name="title" content="{% if post.title %} {{ post.title }} {% else %} {{ this.page.meta_title }} {% endif %}">
     <meta name="description"
         content="{% if post.excerpt %}{{ str_limit(post.excerpt,250) }} {% else %}{{ this.page.meta_description }} {% endif %}">
