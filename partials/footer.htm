@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-5 text-white">
             <h1 class="h5-md ">Arpusda Bangka</h1>
-            <p class="lead-md">Dinas Perpustakaan dan Kearsipan Kabupaten Bangka</p>
+            <p class="lead-md">{{ this.theme.site_name }}</p>
             <div class="mt-4">
                 <div class="d-flex my-1 flex-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -12,7 +12,7 @@
                             d="M19.817,3.308,18.125,1.616a1.25,1.25,0,0,0-.884-.366H11.25V.625A.625.625,0,0,0,10.625,0H9.375A.625.625,0,0,0,8.75.625V1.25H2.188a.938.938,0,0,0-.937.938V5.313a.938.938,0,0,0,.938.938H17.241a1.251,1.251,0,0,0,.884-.366l1.692-1.692a.625.625,0,0,0,0-.884ZM8.75,19.375A.625.625,0,0,0,9.375,20h1.25a.625.625,0,0,0,.625-.625V15H8.75ZM17.813,8.75H11.25V7.5H8.75V8.75H2.759a1.251,1.251,0,0,0-.884.366L.183,10.808a.625.625,0,0,0,0,.884l1.692,1.692a1.25,1.25,0,0,0,.884.366H17.813a.938.938,0,0,0,.938-.937V9.688A.938.938,0,0,0,17.813,8.75Z"
                             transform="translate(0)" fill="#fff" />
                     </svg>
-                    <p class="mb-0 ml-3 small-md">Jalan XYZ</p>
+                    <p class="mb-0 ml-3 small-md">{{ this.theme.address }}</p>
                 </div>
                 <div class="d-flex my-1 flex-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18.988" height="15" viewBox="0 0 18.988 15">
@@ -26,7 +26,7 @@
                         </g>
                     </svg>
 
-                    <p class="mb-0 ml-3 small-md">Jalan XYZ</p>
+                    <p class="mb-0 ml-3 small-md"> {{ this.theme.email }} </p>
                 </div>
                 <div class="d-flex my-1 flex-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18.333" height="18.333" viewBox="0 0 18.333 18.333">
@@ -38,16 +38,10 @@
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" />
                         </g>
                     </svg>
-                    <details style="font-size:  0.9375rem;" open class="ml-3">
-                        <summary>
-                            Jam Layanan :
-                        </summary>
-                        <time>
-                            - Senin - Jum'at, 08.00 - 16.00 WIB
-                        </time>
-                        <br>
-                        <time>- Sabtu, 09.00 - 13.00</time>
-                    </details>
+                    <p class="mb-0 ml-3 small-md"> Jam Layanan :<br />
+                        &nbsp;- <time>{{ this.theme.open_hours }}</time><br />
+                        &nbsp;- <time>{{ this.theme.open_hours2 }}</time>
+                    </p>
                 </div>
             </div>
 
@@ -73,36 +67,27 @@
             </div>
         </div>
     </div>
-    <div class="row container my-4 align-items-center w-md-25 mx-auto">
-        <article class="col-md-3 col-6 my-1">
 
-            <svg class="w-100 my-2" xmlns="http://www.w3.org/2000/svg" width="17.333" height="29.333"
+    <div class="row container my-4 align-items-center w-md-25 mx-auto">
+        {% for sosmed in this.theme.social_media %}
+        <article class="col-md-3 col-6 my-1">
+            {% if sosmed.type == 'fb' %}
+            <svg class="my-2" xmlns="http://www.w3.org/2000/svg" width="17.333" height="29.333"
                 viewBox="0 0 17.333 29.333">
                 <path id="Icon_feather-facebook" data-name="Icon feather-facebook"
                     d="M24,2.667H20a6.667,6.667,0,0,0-6.667,6.667v4h-4v5.333h4V29.333h5.333V18.667h4L24,13.333H18.667v-4A1.333,1.333,0,0,1,20,8h4Z"
                     transform="translate(-8 -1.333)" fill="none" stroke="#fff" stroke-linecap="round"
                     stroke-linejoin="round" stroke-width="2.667" />
             </svg>
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Facebook
-                1</a>
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Facebook
-                2</a>
-        </article>
-        <article class="col-md-3 col-6 my-1">
-
-            <svg class="w-100 my-2" xmlns="http://www.w3.org/2000/svg" width="32" height="26.855"
-                viewBox="0 0 32 26.855">
+            {% elseif sosmed.type == 'twitter' %}
+            <svg class="my-2" xmlns="http://www.w3.org/2000/svg" width="32" height="26.855" viewBox="0 0 32 26.855">
                 <path id="Icon_feather-twitter" data-name="Icon feather-twitter"
                     d="M30.667,4A14.533,14.533,0,0,1,26.48,6.04a5.973,5.973,0,0,0-10.48,4v1.333A14.213,14.213,0,0,1,4,5.333s-5.333,12,6.667,17.333a15.52,15.52,0,0,1-9.333,2.667C13.333,32,28,25.333,28,10a6,6,0,0,0-.107-1.107A10.293,10.293,0,0,0,30.667,4Z"
                     transform="translate(0 -2.549)" fill="none" stroke="#fff" stroke-linecap="round"
                     stroke-linejoin="round" stroke-width="2.667" />
             </svg>
-
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Twitter 1</a>
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Twitter 2</a>
-        </article>
-        <article class="col-md-3 col-6 my-1">
-            <svg class="w-100 my-2" xmlns="http://www.w3.org/2000/svg" width="32.002" height="23.28"
+            {% elseif sosmed.type == 'youtube' %}
+            <svg class="my-2" xmlns="http://www.w3.org/2000/svg" width="32.002" height="23.28"
                 viewBox="0 0 32.002 23.28">
                 <g id="Icon_feather-youtube" data-name="Icon feather-youtube" transform="translate(0.001 -4)">
                     <path id="Path_13" data-name="Path 13"
@@ -112,13 +97,8 @@
                         stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" />
                 </g>
             </svg>
-
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Youtube 1</a>
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Youtube 2</a>
-
-        </article>
-        <article class="col-md-3 col-6 my-1">
-            <svg class="w-100 my-2" xmlns="http://www.w3.org/2000/svg" width="29.333" height="29.333"
+            {% else %}
+            <svg class="my-2" xmlns="http://www.w3.org/2000/svg" width="29.333" height="29.333"
                 viewBox="0 0 29.333 29.333">
                 <g id="Icon_feather-instagram" data-name="Icon feather-instagram" transform="translate(-1.333 -1.333)">
                     <path id="Path_10" data-name="Path 10"
@@ -131,17 +111,16 @@
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2.667" />
                 </g>
             </svg>
+            {% endif %}
 
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Instagram
-                1</a>
-            <a class="small-md d-block text-center my-0 btn-outline-primary text-white" href="#">Instagram
-                2</a>
-
+            <a href="{{ sosmed.link }}" title="{{ sosmed.name }} "
+                class="small-md text-center my-0 btn-outline-primary text-white ml-1"> {{ sosmed.type }} {{
+                sosmed.division }}</a>
         </article>
+        {% endfor %}
 
     </div>
-    <p class="small-md text-white text-center font-weight-bold mt-5">© Copyright 2020. Dinas Perpustakaan dan
-        Kearsipan
+    <p class="small-md text-white text-center font-weight-bold mt-5">© Copyright 2020. Dinas Perpustakaan dan Kearsipan
         Kabupaten Bangka </p>
 
 </footer>
