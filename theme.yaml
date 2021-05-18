@@ -1,5 +1,64 @@
-name: 'October CMS Webpack Theme Boilerplate'
-description: 'Example theme for October CMS that includes Webpack (using Laravel Mix), Bootstrap, Font Awesome, jQuery and Autoprefixer'
-author: 'Utopig Studio'
-homepage: 'http://utopigstudio.com/'
-code: utopigs-webpack-boilerplate
+name: 'Tema Website Dinas Kearsipan dan Perpustakaan Kabupaten Bangka'
+description: 'Tema yang dibangun oleh Dinas Komunikasi, Informatika, dan Statistik Kab. Bangka untuk Website Dinas Kearsipan dan Perpustakaan Kab. Bangka'
+author: 'anRecky'
+homepage: 'github.com/anrecky'
+code: arpusda-kominfo
+
+form:
+  fields:
+    site_name:
+      label: Nama Website
+      default: Dinas Kearsipan dan Perpustakaan Daerah Kabupaten Bangka
+      span: storm
+      cssClass: col-md-5
+    email:
+      label: E-Mail
+      type: email
+      span: storm
+      cssClass: col-md-3
+    address:
+      label: Alamat Gedung / Kantor
+      type: textarea
+      size: tiny
+      span: full
+    open_hours:
+      label: Jam Layanan
+      type: text
+      default: Senin - Jum'at, 08.00 - 16.00 WIB
+    open_hours2:
+      label: Jam Layanan 2
+      type: text
+      default: Sabtu, 09.00 - 13.00
+    social_media:
+      type: repeater
+      titleFrom: type
+      label: Sosial Media
+      form:
+        fields:
+          division:
+            label: Bidang Dinas
+            type: balloon-selector
+            default: kearsipan
+            options:
+              kearsipan: Kearsipan
+              perpustakaan: Perpustakaan
+            span: left
+          type:
+            label: Jenis Media
+            span: right
+            type: radio
+            default: fb
+            options:
+              fb: Facebook
+              twitter: Twitter
+              youtube: Youtube
+              ig: Instagram
+          link:
+            label: Link Media Sosial
+            type: text
+            span: left
+          name: 
+            label: Nama Akun 
+            placeholder: (Sesuai Dengan Nama Pada Akun Media Sosial)
+            type: text
+            span: left
