@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
 title = "Beranda"
 url = "/"
 layout = "default"
@@ -26,6 +29,63 @@ width = 360
 resizer = "auto"
 ==
 <?php
+=======
+>>>>>>> 8468227 (a)
+title = "Beranda"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+
+<<<<<<< HEAD
+=======
+[recordDetail]
+activeOnly = 1
+recordSlug = "banner-depan"
+areaSlug = "banner"
+categorySlug = "{{ :category }}"
+useMainCategory = 1
+categoryPage = 0
+categoryPageSlug = "{{ :category }}"
+
+>>>>>>> 8468227 (a)
+[galleryId]
+idGallery = 1
+lang = "Gallery"
+jqueryinject = "no"
+thumbnail = "true"
+caption = "true"
+desc = "true"
+counter = "true"
+controls = "true"
+preload = 1
+mode = "lg-slide"
+speed = 600
+loop = "true"
+auto = "false"
+pause = 2000
+escKey = "true"
+height = 200
+width = 360
+resizer = "auto"
+<<<<<<< HEAD
+==
+<?php
+=======
+
+[postsInSeries beritaSeries]
+series = "berita"
+orderBy = "published_at asc"
+page = "{{ :page }}"
+resultsPerPage = 4
+postPage = "home"
+categoryPage = "home"
+==
+<?php
+use GinoPane\BlogTaxonomy\Models\Series;
+>>>>>>> Stashed changes
+>>>>>>> 8468227 (a)
 use Janvince\SmallRecords\Models\Record;
 
 function onStart()
@@ -43,9 +103,344 @@ function onLoadServices()
 return[
 'services'=>$services
 ];
+<<<<<<< Updated upstream
+}
+<<<<<<< HEAD
+?>
+==
+=======
+?>
+==
+=======
 }
 ?>
 ==
+<style>
+    #gpr-kominfo-widget-footer {
+        margin-bottom: 0;
+    }
+
+</style>
+<div id="servicesContent" class="services__content">
+    <!-- Button to close the overlay navigation -->
+    <button type="button" class="closeService close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="container-fluid my-5">
+        <h1 class="text-white text-center mb-5 mb-md-0">Layanan</h1>
+        <div id="services-wrapper" class="row my-4">
+
+        </div>
+    </div>
+</div>
+<main class="main-content">
+    {% if recordDetail.images_media|length %}
+    <section class="slideshow">
+        <div class="slideshow-inner">
+            <div class="slides">
+                {% for mediaImage in recordDetail.images_media %}
+                <div class="slide {{ loop.first ? 'is-active' :''}}">
+                    <div class="slide-content">
+                        <div class="caption d-none">
+                            <div class="title">Slide title 1</div>
+                            <div class="text">
+                                <p>Slide description 1</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="{{mediaImage.image|media}}"
+                            alt="{{mediaImage.image_title ? mediaImage.image_title : recordDetail.recordDetail.name}}"
+                            class="image" />
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="indicators">
+                {% for slideshow in recordDetail.images_media %}
+                <div class="item {{ loop.first ? 'is-active' :''}}">
+                    <span class="icon">{{loop.index}}</span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="arrows">
+                <div class="arrow prev">
+                    <span class="svg svg-arrow-left">
+                        <svg version="1.1" id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px"
+                            viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve">
+                            <path
+                                d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z" />
+                        </svg>
+                        <span class="alt sr-only"></span>
+                    </span>
+                </div>
+                <div class="arrow next">
+                    <span class="svg svg-arrow-right">
+                        <svg version="1.1" id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px"
+                            viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve">
+                            <path
+                                d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z" />
+                        </svg>
+                        <span class="alt sr-only"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <div class="wrapper-bg">
+        <section class="container-fluid text-center services">
+            <h1 class="font-weight-bold h1">Layanan</h1>
+            <div class="services__wrapper row">
+                <article class="services__kearsipan col-md-6 my-2 my-md-0">
+                    <a aria-label="Close" id="kearsipanBtn" href="javascript:void(0)">
+                        <img src="{{ 'assets/images/service-kearsipan.png'|theme }}" class="p-5 shadow img-fluid"
+                            alt="Gambar Layanan Kearsipan">
+                    </a>
+                </article>
+                <article class="services__perpustakaan col-md-6 my-2 my-md-0">
+                    <a aria-label="Close" id="perpustakaanBtn" href="javascript:void(0)">
+                        <img src="{{ 'assets/images/service-perpustakaan.png'|theme }}" class="p-5 shadow img-fluid"
+                            alt="Gambar Layanan Perpustakaan">
+                    </a>
+                </article>
+            </div>
+        </section>
+        <section class="container-fluid text-center events">
+            <h1 class="font-weight-bold h1">Event</h1>
+            <div class="row px-0 mx-0">
+                <div class="swiper-container main-slider loading col-md-9 col-12">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Shaun Matthews</p>
+                                <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since
+                                    the
+                                    1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                                    specimen book.</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Alexis Berry</p>
+                                <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since
+                                    the
+                                    1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                                    specimen book.</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Billie Pierce</p>
+                                <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since
+                                    the
+                                    1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                                    specimen book.</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Trevor Copeland</p>
+                                <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since
+                                    the
+                                    1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                                    specimen book.</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Bernadette Newman</p>
+                                <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since
+                                    the
+                                    1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                                    specimen book.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                    <div class="swiper-button-next swiper-button-white"></div>
+                </div>
+
+                <!-- Thumbnail navigation -->
+                <div class="swiper-container nav-slider loading col-md-3 col-12">
+                    <div class="swiper-wrapper" role="navigation">
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Shaun Matthews</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Alexis Berry</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Billie Pierce</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Trevor Copeland</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="slide-bgimg"
+                                style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM)">
+                                <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM"
+                                    class="entity-img" />
+                            </figure>
+                            <div class="content">
+                                <p class="title">Bernadette Newman</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid text-center publikasi pb-4">
+            <h1 class="font-weight-bold h1">Publikasi</h1>
+            <div class="row">
+                <article class="col-md-7">
+                    <h1 class="font-weight-bold h3 text-white mb-4">Berita</h1>
+                    <div id="news-wrapper" class="row">
+                        {% for post in beritaSeries.posts %}
+                        <div class="col-md-3 my-2">
+                            <div class="card" style="width: 100%;">
+                                <img class="card-img-top" src="{{ post.featured_images.first.path }}"
+                                    alt="{{post.featured_images.description}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.title }}</h5>
+                                    <p class="card-text">{{ post.excerpt }}</p>
+                                    <time> {{ post.published_at | date('l F') }} </time>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <form id="loadmore" class="col-md-12 my-4">
+                            <button type="submit" class="mx-auto btn btn-outline-warning">Tampilkan Lebih
+                                Banyak</button>
+                        </form>
+                        <div class="container-fluid">
+
+                            <a href="#" id="goToBerita" class=" btn btn-outline-light my-4 d-none">Halaman Utama
+                                Berita</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-md-5">
+                    <h1 class="font-weight-bold h3 text-white mb-4">Galeri</h1>
+                    {% component 'galleryId' %}
+                </article>
+            </div>
+
+        </section>
+        <section class="container-fluid text-center blogs pb-4">
+            <h1 class="font-weight-bold h1">Blog</h1>
+            {% partial 'beranda/blog' %}
+        </section>
+        <script type="text/javascript" src="https://widget.kominfo.go.id/gpr-widget-kominfo.min.js">
+        </script>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <section style="background: #254972;" class="container-fluid text-center social-media">
+            <h1 class="font-weight-bold h1">Social Media</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <div style="height: 90%;overflow-y: scroll;" id="gpr-kominfo-widget-container"></div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline"
+                                data-width="450" data-height="280" data-small-header="false"
+                                data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a
+                                        href="https://www.facebook.com/facebook">Facebook</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="twitter-timeline" data-lang="id" data-height="280" data-theme="dark"
+                                href="https://twitter.com/TwitterID?ref_src=twsrc%5Etfw">Tweets by TwitterID</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="twitter-timeline" data-lang="id" data-height="280" data-theme="dark"
+                                href="https://twitter.com/TwitterID?ref_src=twsrc%5Etfw">Tweets by TwitterID</a>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline"
+                                data-width="450" data-height="280" data-small-header="false"
+                                data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a
+                                        href="https://www.facebook.com/facebook">Facebook</a></blockquote>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="twitter-timeline" data-lang="id" data-height="280" data-theme="dark"
+                                href="https://twitter.com/TwitterID?ref_src=twsrc%5Etfw">Tweets by TwitterID</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="twitter-timeline" data-lang="id" data-height="280" data-theme="dark"
+                                href="https://twitter.com/TwitterID?ref_src=twsrc%5Etfw">Tweets by TwitterID</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+>>>>>>> Stashed changes
+
+>>>>>>> 8468227 (a)
 {% partial 'beranda/slideshow' %}
 <section class="container-fluid text-center services">
     <h1 class="font-weight-bold h1">Layanan</h1>
@@ -63,6 +458,7 @@ return[
             </a>
         </article>
     </div>
+<<<<<<< Updated upstream
 </section>
 
 
@@ -70,3 +466,6 @@ return[
     <h1 class="font-weight-bold h1">Blog</h1>
     {% partial 'beranda/blog' %}
 </section>
+=======
+</main>
+>>>>>>> Stashed changes
